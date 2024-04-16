@@ -37,4 +37,8 @@
   .whitesmoke-text {
     color: var(--white-smoke);
   }
+
+  .active {
+    @apply text-blue-600 !important;
+  }
 }
