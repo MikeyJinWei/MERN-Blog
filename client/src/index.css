@@ -6,12 +6,16 @@
 @layer base {
   :root {
     --whitesmoke: #f7f7f7;
+    /* --bg-color: #f7f7f7; */
   }
 
   html,
   body,
   :root {
     height: 100%;
+    color: rgb(87 83 78);
+    background: #f7f7f7;
+    /* @apply dark h-full bg-[--whitesmoke] dark:bg-black */
   }
 }
 

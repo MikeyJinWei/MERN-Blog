@@ -37,10 +37,12 @@ const Header = () => {
   };
 
   return (
-    <>
+    <div>
       <header
-        className={`w-full shadow-sm bg-[--whitesmoke] ${
-          isScrolled ? "top-0 sticky bg-white dark:bg-[#020202] shadow-md" : ""
+        className={`w-full ${
+          isScrolled
+            ? "top-0 sticky bg-white shadow-md"
+            : "bg-[--whitesmoke] shadow-sm"
         }`}
       >
         <Container>
@@ -50,16 +52,14 @@ const Header = () => {
               <Link to="/">
                 <div>
                   <div className="flex justify-center items-center gap-1">
-                    <TbCell className="text-4xl md:text-[48px] text-stone-600" />
-                    <span className="text-xl md:text-2xl text-stone-600">
-                      Elements
-                    </span>
+                    <TbCell className="text-4xl md:text-[48px]" />
+                    <span className="text-xl md:text-2xl">Elements</span>
                   </div>
                 </div>
               </Link>
 
               {/* Tags */}
-              <div className="translate-x-[15%] hidden xl:flex gap-2 text-sm">
+              <div className="translate-x-[15%] hidden xl:flex gap-2 text-sm text-black">
                 <Tag
                   label="Tech"
                   className="font-medium border-teal-100 bg-teal-100"
@@ -98,7 +98,7 @@ const Header = () => {
               </div>
 
               {/* Nav Link */}
-              <div className="hidden xl:flex gap-1 text-base">
+              <div className="hidden xl:flex gap-1 text-base text-black">
                 <Button
                   label=""
                   icon={<BsFillMoonStarsFill />}
@@ -186,7 +186,7 @@ const Header = () => {
           </div>
         </Container>
       </header>
-    </>
+    </div>
   );
 };
 
