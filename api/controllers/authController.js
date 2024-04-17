@@ -1,4 +1,5 @@
 import User from "../models/userModel.js";
+import bcrypt from "bcryptjs";
 
 // register
 export const register = async (req, res) => {
@@ -10,12 +11,14 @@ export const register = async (req, res) => {
     return res.status(400).json({ message: "All fields are required" });
   }
 
+  const hashedPassword = bcrypt.hashSync(password, 10);
+
   try {
     // create new user
     const newUser = new User({
       username,
       email,
-      password,
+      password: hashedPassword,
     });
     // save data to db
     await newUser.save();
