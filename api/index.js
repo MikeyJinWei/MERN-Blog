@@ -30,5 +30,21 @@ app.get("/", (req, res) => {
   res.json({ message: "Server is running!" });
 });
 
+// activate user route
 app.use("/api/user", userRoute);
+// activate auth route
 app.use("/api/auth", authRoute);
+// activate error handler middleware
+app.use((err, req, res, next) => {
+  // access `statusCode` key from `err` within HTTP protocol
+  const statusCode = err.statusCode || 500;
+  // access `error` message from `Error` object
+  const message = err.message || "Internal Server Error";
+
+  // response status code and error message to client
+  res.status(statusCode).json({
+    success: false, // response json error contain multiple key
+    statusCode,
+    message,
+  });
+});

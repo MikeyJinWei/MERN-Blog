@@ -1,14 +1,16 @@
 import User from "../models/userModel.js";
 import bcrypt from "bcryptjs";
+import { errorHandler } from "../utils/error.js";
 
 // register
-export const register = async (req, res) => {
+export const register = async (req, res, next) => {
   // destructure data from field
   const { username, email, password } = req.body;
 
   // handle client fields error
   if (!username || username === "" || !email || !password) {
-    return res.status(400).json({ message: "All fields are required" });
+    // handle with error handle middleware from `api/utils/error.js`
+    next(errorHandler(400, "All fields are required"));
   }
 
   const hashedPassword = bcrypt.hashSync(password, 10);
@@ -24,7 +26,8 @@ export const register = async (req, res) => {
     await newUser.save();
     res.json("Register successful");
   } catch (error) {
-    // handle same email error
-    res.status(500).json({ message: error.message }); // log error to client
+    // handle repeated email (duplicate key) error with middleware
+    // res.status(500).json({ message: error.message });
+    next(error); // log error to client
   }
 };
