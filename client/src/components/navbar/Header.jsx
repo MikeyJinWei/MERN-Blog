@@ -12,10 +12,9 @@ import { RiPlantLine } from "react-icons/ri";
 import { TbMusicHeart } from "react-icons/tb";
 import { IoNewspaperOutline, IoClose } from "react-icons/io5";
 import { FiSearch } from "react-icons/fi";
+import Logo from "../Logo";
 
 const Header = () => {
-  let path = useLocation().pathname;
-
   const [isScrolled, setIsScrolled] = useState(false);
   const [isCollapsed, setIsCollapsed] = useState(false);
 
@@ -37,26 +36,17 @@ const Header = () => {
   };
 
   return (
-    <div>
+    <>
       <header
-        className={`w-full ${
-          isScrolled
-            ? "top-0 sticky bg-white shadow-md"
-            : "bg-[--whitesmoke] shadow-sm"
+        className={`top-0 sticky w-full shadow-md ${
+          isScrolled ? "bg-white" : "bg-[--whitesmoke] "
         }`}
       >
         <Container>
           <div className="w-full flex flex-col justify-center">
             <div className="flex items-center flex-row justify-between">
               {/* Logo */}
-              <Link to="/">
-                <div>
-                  <div className="flex justify-center items-center gap-1">
-                    <TbCell className="text-4xl md:text-[48px]" />
-                    <span className="text-xl md:text-2xl">Elements</span>
-                  </div>
-                </div>
-              </Link>
+              <Logo />
 
               {/* Tags */}
               <div className="translate-x-[15%] hidden xl:flex gap-2 text-sm text-black">
@@ -186,7 +176,7 @@ const Header = () => {
           </div>
         </Container>
       </header>
-    </div>
+    </>
   );
 };
 
