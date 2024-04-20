@@ -32,8 +32,10 @@ app.get("/", (req, res) => {
 
 // activate user route
 app.use("/api/user", userRoute);
+
 // activate auth route
 app.use("/api/auth", authRoute);
+
 // activate error handler middleware
 app.use((err, req, res, next) => {
   // access `statusCode` key from `err` within HTTP protocol
