@@ -1,18 +1,17 @@
 import { Link, useLocation, NavLink } from "react-router-dom";
-import Container from "./Container";
 import { useEffect, useState } from "react";
 import Button from "../Button";
 import Tag from "../Tag";
 
 import { BsFillMoonStarsFill } from "react-icons/bs";
 import { CgMenuRightAlt } from "react-icons/cg";
-import { TbCell } from "react-icons/tb";
 import { FaCode } from "react-icons/fa6";
 import { RiPlantLine } from "react-icons/ri";
 import { TbMusicHeart } from "react-icons/tb";
 import { IoNewspaperOutline, IoClose } from "react-icons/io5";
 import { FiSearch } from "react-icons/fi";
 import Logo from "../Logo";
+import Container from "../Container";
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -38,11 +37,11 @@ const Header = () => {
   return (
     <>
       <header
-        className={`top-0 sticky w-full shadow-md ${
-          isScrolled ? "bg-white" : "bg-[--whitesmoke] "
+        className={`z-10 top-0 sticky w-full shadow-sm ${
+          isScrolled ? "bg-white" : "bg-[--whitesmoke] shadow-md"
         }`}
       >
-        <Container>
+        <Container className="mt-0 pt-4 md:pt-8 pb-2 md:pb-3">
           <div className="w-full flex flex-col justify-center">
             <div className="flex items-center flex-row justify-between">
               {/* Logo */}

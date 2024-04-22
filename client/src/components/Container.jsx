@@ -1,6 +1,13 @@
-const Container = ({ children }) => {
+import { twMerge } from "tailwind-merge";
+
+const Container = ({ children, className }) => {
   return (
-    <div className="max-w-[1600px] min-h-dvh mt-3 mx-auto px-4 md:px-6 pt-4 md:pt-8">
+    <div
+      className={twMerge(
+        "max-w-[1600px] my-16 mx-auto py-4 md:py-8 px-4 md:px-6",
+        className
+      )}
+    >
       {children}
     </div>
   );

@@ -9,7 +9,7 @@ const Button = ({ icon, label, className }) => {
       )}
     >
       {icon && <div className={twMerge(className)}>{icon}</div>}
-      <span>{label}</span>
+      {label && <span>{label}</span>}
     </button>
   );
 };

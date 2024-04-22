@@ -16,8 +16,6 @@ const Register = () => {
   // initialise useNavigate hook
   const navigate = useNavigate();
 
-  // const msgRef = useRef(null);
-
   // handle password visibility icon
   const handleVisible = (e) => {
     setVisible(!visible);
@@ -25,6 +23,7 @@ const Register = () => {
 
   // handle input change
   const handleChange = (e) => {
+    // trim() method to prevent space input
     setFormData({ ...formData, [e.target.id]: e.target.value.trim() });
     // console.log(formData);
   };
@@ -90,7 +89,7 @@ const Register = () => {
               <h1 className="text-5xl">Welcome to</h1>
             </div>
             {/* Logo */}
-            <Logo className=" scale-110" />
+            <Logo className="text-center scale-110" />
             <h3 className="text-lg">Let's enter your info to sign up</h3>
           </div>
           <form
@@ -148,7 +147,7 @@ const Register = () => {
             {/* Button */}
             <button
               disabled={loading} // sync disabled state to loading
-              className="flex justify-center items-center gap-2 py-1 px-3 xl:py-2 xl:px-6 text-lg text-[--whitesmoke] border-2 border-none rounded-md bg-stone-600 hover:opacity-80 transition-all duration-300 ease-in-out"
+              className="flex justify-center items-center gap-2 py-1 px-3 xl:py-2 xl:px-6 text-lg text-[--whitesmoke] border-2 border-none rounded-md bg-neutral-600 hover:opacity-80 transition-all duration-300 ease-in-out"
             >
               {/* conditional rendering content based on loading state */}
               {loading ? (

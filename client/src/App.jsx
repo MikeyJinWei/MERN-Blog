@@ -7,6 +7,7 @@ import Dashboard from "./pages/Dashboard";
 import Projects from "./pages/Projects";
 import Header from "./components/navbar/Header";
 import Search from "./pages/Search";
+import Footer from "./components/footer/Footer";
 
 const App = () => {
   return (
@@ -21,6 +22,7 @@ const App = () => {
         <Route path="/projects" element={<Projects />} />
         <Route path="/search" element={<Search />} />
       </Routes>
+      <Footer />
     </BrowserRouter>
   );
 };
