@@ -1,6 +1,7 @@
 const Home = () => {
   return (
-    <div className="p-3 bg-[--whitesmoke] h-full">
+    <div className="">
+      Home
       {/* <p>
         Veniam aute nostrud cupidatat est non cupidatat incididunt ut do commodo
         esse laborum sit duis. Et exercitation nisi consectetur velit ut in do

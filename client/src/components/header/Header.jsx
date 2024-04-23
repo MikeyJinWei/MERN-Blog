@@ -41,7 +41,7 @@ const Header = () => {
           isScrolled ? "bg-white" : "bg-[--whitesmoke] shadow-md"
         }`}
       >
-        <Container className="mt-0 pt-4 md:pt-8 pb-2 md:pb-3">
+        <Container className="my-0 mt-0 pt-4 md:pt-8 pb-2 md:pb-3">
           <div className="w-full flex flex-col justify-center">
             <div className="flex items-center flex-row justify-between">
               {/* Logo */}
@@ -65,25 +65,25 @@ const Header = () => {
                   icon={<TbMusicHeart size={20} />}
                 />
                 {/* <Tag
-        label="Art / Design"
-        className="font-medium border-red-100 bg-red-100"
-        icon={<MdOutlinePalette size={20} />}
-      /> */}
+                      label="Art / Design"
+                      className="font-medium border-red-100 bg-red-100"
+                      icon={<MdOutlinePalette size={20} />}
+                    /> */}
                 {/* <Tag
-        label="Academy"
-        className="font-medium border-slate-100 bg-slate-100"
-        icon={<LiaBookSolid size={20} />}
-      /> */}
+                      label="Academy"
+                      className="font-medium border-slate-100 bg-slate-100"
+                      icon={<LiaBookSolid size={20} />}
+                    /> */}
                 <Tag
                   label="News"
                   className="font-medium border-neutral-200 bg-neutral-200"
                   icon={<IoNewspaperOutline size={20} />}
                 />
                 {/* <Tag
-        label="Health"
-        className="font-medium border-emerald-100 bg-emerald-100"
-        icon={<RiMentalHealthLine size={20} />}
-      /> */}
+                      label="Health"
+                      className="font-medium border-emerald-100 bg-emerald-100"
+                      icon={<RiMentalHealthLine size={20} />}
+                    /> */}
               </div>
 
               {/* Nav Link */}

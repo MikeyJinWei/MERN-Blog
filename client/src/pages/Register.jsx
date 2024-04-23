@@ -3,9 +3,9 @@ import { LuLoader } from "react-icons/lu";
 import Container from "../components/Container";
 import Logo from "../components/Logo";
 import { Link, useNavigate } from "react-router-dom";
-import { useEffect, useRef, useState } from "react"; // maybe add toast in the future with hooks
+import { useEffect, useRef, useState } from "react";
+// maybe add toast in the future with hooks
 import Label from "../components/form/Label";
-import { toast } from "react-toastify";
 
 const Register = () => {
   const [formData, setFormData] = useState({});
@@ -103,7 +103,7 @@ const Register = () => {
                 onChange={handleChange}
                 id="username"
                 type="text"
-                placeholder="Your name..."
+                placeholder="Enter Your name..."
                 className="w-full py-2 px-4 rounded-full text-lg border-[1px] border-stone-400 focus:border-stone-600 focus:ring-stone-600 shadow-sm focus:shadow"
               />
             </div>
@@ -126,7 +126,7 @@ const Register = () => {
                   onChange={handleChange}
                   id="password"
                   type={visible ? "text" : "password"}
-                  placeholder="Your password..."
+                  placeholder="Set Your password..."
                   className="w-full py-2 px-4 rounded-full text-lg border-[1px] border-stone-400 focus:border-stone-600 focus:ring-stone-600 shadow-sm focus:shadow"
                 />
                 <span className="flex justify-around" onClick={handleVisible}>
@@ -156,7 +156,7 @@ const Register = () => {
                   <span className="pl-3">Loading...</span>
                 </>
               ) : (
-                "Sign up"
+                "Sign Up"
               )}
             </button>
 
@@ -168,12 +168,12 @@ const Register = () => {
             )}
           </form>
           <div className="w-full flex gap-2 justify-center">
-            <span>Already have an account? </span>
+            <span>Already Have an Account?</span>
             <Link
               to="/login"
               className="font-medium text-indigo-600 hover:text-indigo-500 transition-colors duration-300 ease-in-out"
             >
-              Sign in
+              Sign In
             </Link>
           </div>
         </div>
