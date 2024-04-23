@@ -147,7 +147,7 @@ const Register = () => {
             {/* Button */}
             <button
               disabled={loading} // sync disabled state to loading
-              className="flex justify-center items-center gap-2 py-1 px-3 xl:py-2 xl:px-6 text-lg text-[--whitesmoke] border-2 border-none rounded-md bg-neutral-600 hover:opacity-80 transition-all duration-300 ease-in-out"
+              className="flex justify-center items-center gap-2 py-2 px-3 xl:py-4 xl:px-6 text-lg text-[--whitesmoke] border-2 border-none rounded-md bg-neutral-600 hover:opacity-80 transition-all duration-300 ease-in-out"
             >
               {/* conditional rendering content based on loading state */}
               {loading ? (

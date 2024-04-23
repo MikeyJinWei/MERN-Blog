@@ -8,6 +8,7 @@ import {
   FaTwitter,
   FaBehanceSquare,
 } from "react-icons/fa";
+import { TbBrandDribbbleFilled } from "react-icons/tb";
 import Button from "../Button";
 
 const Footer = () => {
@@ -86,7 +87,7 @@ const Footer = () => {
                   rel="noopener noreferrer"
                 >
                   <Button
-                    icon={<FaDribbble />}
+                    icon={<TbBrandDribbbleFilled />}
                     className="py-0 px-0 xl:py-0 xl:px-0 text-pink-400 bg-transparent border-none"
                   />
                 </Link>
