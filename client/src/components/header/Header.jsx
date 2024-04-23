@@ -114,7 +114,7 @@ const Header = () => {
                 <Button
                   label=""
                   icon={<FiSearch />}
-                  className="gap-0 text-xl border-none text-blue-400 bg-transparent hover:bg-neutral-300"
+                  className="gap-0 text-xl border-none text-blue-500 bg-transparent hover:bg-neutral-300"
                 />
               </div>
 
@@ -149,7 +149,7 @@ const Header = () => {
                   <NavLink to="/about" className="flex justify-center">
                     <Button
                       label="About"
-                      className="border-none bg-transparent"
+                      className=" hover:text-indigo-500 border-none bg-transparent"
                     />
                   </NavLink>
                 </div>
@@ -157,16 +157,16 @@ const Header = () => {
                   <NavLink to="/projects" className="flex justify-center">
                     <Button
                       label="Projects"
-                      className="border-none bg-transparent"
+                      className="hover:text-indigo-500 border-none bg-transparent"
                     />
                   </NavLink>
                 </div>
-                <div className="w-full active:text-blue-600">
+                <div className="w-full">
                   <NavLink to="/search" className="flex justify-center">
                     <Button
                       label=""
                       icon={<FiSearch />}
-                      className="p-2 text-xl text-blue-400  border-none bg-transparent"
+                      className="p-2 text-xl text-blue-500  border-none bg-transparent"
                     />
                   </NavLink>
                 </div>
