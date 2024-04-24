@@ -1,17 +1,21 @@
 import { useState } from "react";
+
 import Container from "../components/Container";
 import Logo from "../components/Logo";
+import Button from "../components/Button";
 import Label from "../components/form/Label";
+
 import { IoMdEye, IoMdEyeOff } from "react-icons/io";
+import { FaGoogle } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
+import { LuLoader } from "react-icons/lu";
+
 import { useDispatch, useSelector } from "react-redux";
 import {
   loginStart,
   loginSuccess,
   loginFailure,
 } from "../redux/user/userSlice";
-
-import { LuLoader } from "react-icons/lu";
 
 const Login = () => {
   const [formData, setFormData] = useState({});
@@ -93,7 +97,7 @@ const Login = () => {
           {/* Heading */}
           <div className="flex flex-col mx-auto text-center gap-3">
             <div>
-              <h1 className="text-5xl">Welcome back to</h1>
+              <h1 className="text-4xl md:text-5xl">Welcome back to</h1>
             </div>
             {/* Logo */}
             <Logo className="text-center scale-110" />
@@ -141,18 +145,32 @@ const Login = () => {
                 </span>
               </div>
             </div>
+
             {/* Button */}
-            <button className="flex justify-center items-center gap-2 py-2 px-3 xl:py-4 xl:px-6 text-lg text-[--whitesmoke] border-2 border-none rounded-md bg-neutral-600 hover:opacity-80 transition-all duration-300 ease-in-out">
-              {/* conditional rendering content based on loading state */}
-              {loading ? (
-                <>
-                  <LuLoader />
-                  <span className="pl-3">Loading...</span>
-                </>
-              ) : (
-                "Sign In"
-              )}
-            </button>
+            <Button
+              // conditional rendering content based on loading state
+              label={
+                loading ? (
+                  <div className="flex items-center">
+                    <LuLoader />
+                    <span className="pl-3">Loading...</span>
+                  </div>
+                ) : (
+                  "Sign In"
+                )
+              }
+              className="py-1 px-3 xl:py-4 xl:px-6 text-lg lg:text-xl text-[--whitesmoke] border-neutral-600 bg-neutral-600"
+            />
+
+            <hr />
+
+            {/* Google Auth */}
+            <h4 className=" text-center">Or sign in with Google account</h4>
+            <Button
+              label="Continue with Google account"
+              icon={<FaGoogle />}
+              className="py-2 px-3 xl:py-3 xl:px-5 text-lg lg:text-xl text-neutral-600 hover:text-[--whitesmoke] border-neutral-600 bg-transparent hover:bg-neutral-600"
+            />
 
             {/* Alert/Modal */}
             {errMsg && (

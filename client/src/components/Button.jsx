@@ -8,7 +8,7 @@ const Button = ({ icon, label, className }) => {
         className
       )}
     >
-      {icon && <div className={twMerge(className)}>{icon}</div>}
+      {icon && <div>{icon}</div>}
       {label && <span>{label}</span>}
     </button>
   );
