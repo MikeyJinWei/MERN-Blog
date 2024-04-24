@@ -11,6 +11,8 @@ import {
   loginFailure,
 } from "../redux/user/userSlice";
 
+import { LuLoader } from "react-icons/lu";
+
 const Login = () => {
   const [formData, setFormData] = useState({});
   const [visible, setVisible] = useState(false);
@@ -18,7 +20,7 @@ const Login = () => {
   // const [loading, setLoading] = useState(false);
   const dispatch = useDispatch(); // 初始化 useDispatch
   // 改將 error, loading state 從 redux 的 initialState 解構出來
-  const { loading, error: errMsg } = useSelector(state.user);
+  const { loading, error: errMsg } = useSelector((state) => state.user);
 
   const navigate = useNavigate(); // 初始化 useNavigate hook
 
@@ -41,7 +43,7 @@ const Login = () => {
     // handle 欄位未填的錯誤
     if (!formData.email || !formData.password) {
       // return setErrMsg("Please fill in all fields.");
-      dispatch(loginFailure("Please fill in all fields."));
+      return dispatch(loginFailure("Please fill in all fields."));
     }
 
     // try 正常執行的 statement or catch 可能出的錯
@@ -66,16 +68,16 @@ const Login = () => {
         // return setErrMsg(data.message); // 使用 mongoose console 的 message key respond
         dispatch(loginFailure(data.message));
       }
-      setLoading(false); // respond mongoose 知道的錯誤後將 loading state 關閉
+      // setLoading(false); // respond mongoose 知道的錯誤後將 loading state 關閉
 
-      // 確認 res.ok key truthy 後 redirect
+      // 確認 res.ok key truthy 後重新導向其他分頁
       // ok key 代表 200-209 區間的 statusCode
       if (res.ok) {
         dispatch(loginSuccess(data));
         navigate("/");
       }
 
-      // catch 除了欄位未填或 mongoose 已知以外的未知錯誤
+      // catch 未知錯誤（欄位未填或 mongoose 已知的錯誤以外）
     } catch (error) {
       // 假如錯誤抓出就...
       /* setLoading(false); // 將 loading state 關閉

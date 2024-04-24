@@ -15,7 +15,7 @@ const Footer = () => {
   return (
     <footer className="left-0 right-0 bg-white shadow-inner">
       <Container className="my-0 border-t-2 border-stone-200">
-        <div className="grid pt-6 grid-cols-2 md:grid-cols-3 gap-4">
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
           {/* About */}
           <ul className="col-span-1 flex flex-col gap-3 p-1">
             <h3 className="text-lg font-medium">About</h3>
