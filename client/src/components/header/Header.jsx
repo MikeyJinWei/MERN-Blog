@@ -48,7 +48,7 @@ const Header = () => {
               <Logo />
 
               {/* Tags */}
-              <div className="translate-x-[15%] hidden xl:flex gap-2 text-sm text-black">
+              <div className="translate-x-1/4 2xl:translate-x-[40%] hidden xl:flex gap-2 text-sm text-black">
                 <Tag
                   label="Tech"
                   className="font-medium border-teal-100 bg-teal-100"

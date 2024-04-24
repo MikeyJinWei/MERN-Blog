@@ -4,42 +4,52 @@ import Logo from "../components/Logo";
 import Label from "../components/form/Label";
 import { IoMdEye, IoMdEyeOff } from "react-icons/io";
 import { Link, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  loginStart,
+  loginSuccess,
+  loginFailure,
+} from "../redux/user/userSlice";
 
 const Login = () => {
   const [formData, setFormData] = useState({});
   const [visible, setVisible] = useState(false);
-  const [errMsg, setErrMsg] = useState(null);
-  const [loading, setLoading] = useState(false);
+  // const [errMsg, setErrMsg] = useState(null);
+  // const [loading, setLoading] = useState(false);
+  const dispatch = useDispatch(); // 初始化 useDispatch
+  // 改將 error, loading state 從 redux 的 initialState 解構出來
+  const { loading, error: errMsg } = useSelector(state.user);
 
-  // initialise useNavigate hook
-  const navigate = useNavigate();
+  const navigate = useNavigate(); // 初始化 useNavigate hook
 
-  // handle password visibility icon
+  // handle password 開關 icon
   const handleVisible = (e) => {
     setVisible(!visible);
   };
 
   // handle input change
   const handleChange = (e) => {
-    // trim() method to prevent space input
+    // 使用 trim() method 移除空白鍵誤打
     setFormData({ ...formData, [e.target.id]: e.target.value.trim() });
     // console.log(formData);
   };
 
   // handle submit
   const handleSubmit = async (e) => {
-    // remove default refresh behaviour
-    e.preventDefault();
+    e.preventDefault(); // 移除原生重整行為
 
-    // handle empty fields error
+    // handle 欄位未填的錯誤
     if (!formData.email || !formData.password) {
-      return setErrMsg("Please fill in all fields.");
+      // return setErrMsg("Please fill in all fields.");
+      dispatch(loginFailure("Please fill in all fields."));
     }
 
-    // try or catch possible error
+    // try 正常執行的 statement or catch 可能出的錯
     try {
-      setLoading(true); // set loading state to true before fetch is over
-      setErrMsg(null); // set errMsg to null to clean up previous error
+      /* setLoading(true); // fetch() 結束前將 loading state 開啟
+      setErrMsg(null); // 清空之前的 errMsg state 紀錄 */
+
+      dispatch(loginStart()); // fetch() 結束前同時將 loading state 開啟、清空 errMsg state 紀錄
 
       const res = await fetch("/api/auth/login", {
         method: "POST",
@@ -51,29 +61,26 @@ const Login = () => {
 
       const data = await res.json();
 
-      // handle mongo-known error e.g. same email registered, etc.
-      if (
-        data.success === false &&
-        data.message ===
-          'E11000 duplicate key error collection: mern-blog.users index: email_1 dup key: { email: "user1@gmail.com" }'
-      ) {
-        setLoading(false); // set loading state to false if mongo-known error is responded
-        return setErrMsg("Already signed up with this email");
-      } else if (data.success === false) {
-        return setErrMsg(data.message);
+      // handle mongoose 知道的錯誤
+      if (data.success === false) {
+        // return setErrMsg(data.message); // 使用 mongoose console 的 message key respond
+        dispatch(loginFailure(data.message));
       }
-      setLoading(false); // set loading state to false if mongo-known error is responded
+      setLoading(false); // respond mongoose 知道的錯誤後將 loading state 關閉
 
-      // check res.ok truthy then redirect
-      // ok key indicate statusCode is in the range 200-209
+      // 確認 res.ok key truthy 後 redirect
+      // ok key 代表 200-209 區間的 statusCode
       if (res.ok) {
+        dispatch(loginSuccess(data));
         navigate("/");
       }
 
-      // catch unknown error except empty fields or mongo-known error
+      // catch 除了欄位未填或 mongoose 已知以外的未知錯誤
     } catch (error) {
-      setErrMsg(error.message);
-      setLoading(false); // set loading state to false if error is caught
+      // 假如錯誤抓出就...
+      /* setLoading(false); // 將 loading state 關閉
+      setErrMsg(error.message); // 將 errMsg state 改變成 error.message key */
+      dispatch(loginFailure(error.message)); // 同時將 loading state 關閉、將 errMsg state 改變成 error.message key
     }
   };
 
@@ -135,7 +142,14 @@ const Login = () => {
             {/* Button */}
             <button className="flex justify-center items-center gap-2 py-2 px-3 xl:py-4 xl:px-6 text-lg text-[--whitesmoke] border-2 border-none rounded-md bg-neutral-600 hover:opacity-80 transition-all duration-300 ease-in-out">
               {/* conditional rendering content based on loading state */}
-              Sign In
+              {loading ? (
+                <>
+                  <LuLoader />
+                  <span className="pl-3">Loading...</span>
+                </>
+              ) : (
+                "Sign In"
+              )}
             </button>
 
             {/* Alert/Modal */}
