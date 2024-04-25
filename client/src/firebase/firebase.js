@@ -5,7 +5,8 @@ import { initializeApp } from "firebase/app";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: process.env.VITE_FIREBASE_API_KEY, // hidden
+  // 在 Vite 存取 process.env 會導致資料外洩因此被棄用
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY, // hidden
   authDomain: "mern-blog-dc44e.firebaseapp.com",
   projectId: "mern-blog-dc44e",
   storageBucket: "mern-blog-dc44e.appspot.com",
