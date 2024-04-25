@@ -3,7 +3,7 @@ import { useState } from "react";
 import Container from "../components/Container";
 import Logo from "../components/Logo";
 import Button from "../components/Button";
-import Label from "../components/form/Label";
+import Label from "../components/Label";
 
 import { IoMdEye, IoMdEyeOff } from "react-icons/io";
 import { FaGoogle } from "react-icons/fa";
@@ -16,6 +16,8 @@ import {
   loginSuccess,
   loginFailure,
 } from "../redux/user/userSlice";
+import OAuth from "../components/OAuth";
+import Input from "../components/Input";
 
 const Login = () => {
   const [formData, setFormData] = useState({});
@@ -105,17 +107,16 @@ const Login = () => {
           </div>
           <form
             onSubmit={handleSubmit}
-            className="w-full max-w-md mx-auto flex flex-col gap-6"
+            className="w-full max-w-md mx-auto flex flex-col gap-4"
           >
             {/* Email */}
             <div>
               <Label content="Email" />
-              <input
+              <Input
                 onChange={handleChange}
                 id="email"
                 type="email"
                 placeholder="john@email.com"
-                className="w-full py-2 px-4 rounded-full text-lg border-[1px] border-stone-400 focus:border-stone-600 focus:ring-stone-600 shadow-sm focus:shadow"
               />
             </div>
 
@@ -123,12 +124,11 @@ const Login = () => {
             <div>
               <Label content="Password" />
               <div className="flex">
-                <input
+                <Input
                   onChange={handleChange}
                   id="password"
                   type={visible ? "text" : "password"}
                   placeholder="Your password......"
-                  className="w-full py-2 px-4 rounded-full text-lg border-[1px] border-stone-400 focus:border-stone-600 focus:ring-stone-600 shadow-sm focus:shadow"
                 />
                 <span className="flex justify-around" onClick={handleVisible}>
                   {visible ? (
@@ -149,6 +149,7 @@ const Login = () => {
             {/* Button */}
             <Button
               // conditional rendering content based on loading state
+              disabled={loading}
               label={
                 loading ? (
                   <div className="flex items-center">
@@ -159,17 +160,7 @@ const Login = () => {
                   "Sign In"
                 )
               }
-              className="py-1 px-3 xl:py-4 xl:px-6 text-lg lg:text-xl text-[--whitesmoke] border-neutral-600 bg-neutral-600"
-            />
-
-            <hr />
-
-            {/* Google Auth */}
-            <h4 className=" text-center">Or sign in with Google account</h4>
-            <Button
-              label="Continue with Google account"
-              icon={<FaGoogle />}
-              className="py-2 px-3 xl:py-3 xl:px-5 text-lg lg:text-xl text-neutral-600 hover:text-[--whitesmoke] border-neutral-600 bg-transparent hover:bg-neutral-600"
+              className="text-lg lg:text-xl text-[--whitesmoke] border-neutral-600 bg-neutral-600"
             />
 
             {/* Alert/Modal */}
@@ -178,6 +169,12 @@ const Login = () => {
                 {errMsg}
               </div>
             )}
+
+            <hr />
+
+            {/* Google Auth */}
+            <h4 className=" text-center">Or sign in with Google account</h4>
+            <OAuth />
           </form>
           <div className="w-full flex gap-2 justify-center">
             <span>Don't have an account? </span>

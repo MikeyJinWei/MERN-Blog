@@ -3,9 +3,12 @@ import { LuLoader } from "react-icons/lu";
 import Container from "../components/Container";
 import Logo from "../components/Logo";
 import { Link, useNavigate } from "react-router-dom";
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 // maybe add toast in the future with hooks
-import Label from "../components/form/Label";
+import Label from "../components/Label";
+import OAuth from "../components/OAuth";
+import Button from "../components/Button";
+import Input from "../components/Input";
 
 const Register = () => {
   const [formData, setFormData] = useState({});
@@ -79,6 +82,9 @@ const Register = () => {
     }
   };
 
+  // handle Google 認證
+  const handleGoogleAuth = async (e) => {};
+
   return (
     <Container>
       <div className="w-full">
@@ -94,40 +100,39 @@ const Register = () => {
           </div>
           <form
             onSubmit={handleSubmit}
-            className="w-full max-w-md mx-auto flex flex-col gap-6"
+            className="w-full max-w-md mx-auto flex flex-col gap-4"
           >
             {/* Username */}
             <div>
               <Label content="Username" />
-              <input
+              <Input
                 onChange={handleChange}
-                id="username"
                 type="text"
+                id="username"
                 placeholder="Enter Your name..."
-                className="w-full py-2 px-4 rounded-full text-lg border-[1px] border-stone-400 focus:border-stone-600 focus:ring-stone-600 shadow-sm focus:shadow"
               />
             </div>
+
             {/* Email */}
             <div>
               <Label content="Email" />
-              <input
+              <Input
                 onChange={handleChange}
-                id="email"
                 type="email"
+                id="email"
                 placeholder="john@email.com"
-                className="w-full py-2 px-4 rounded-full text-lg border-[1px] border-stone-400 focus:border-stone-600 focus:ring-stone-600 shadow-sm focus:shadow"
               />
             </div>
+
             {/* Password */}
             <div>
               <Label content="Password" />
               <div className="flex">
-                <input
+                <Input
                   onChange={handleChange}
-                  id="password"
                   type={visible ? "text" : "password"}
-                  placeholder="Set Your password..."
-                  className="w-full py-2 px-4 rounded-full text-lg border-[1px] border-stone-400 focus:border-stone-600 focus:ring-stone-600 shadow-sm focus:shadow"
+                  id="password"
+                  placeholder="Enter Your password..."
                 />
                 <span className="flex justify-around" onClick={handleVisible}>
                   {visible ? (
@@ -144,28 +149,37 @@ const Register = () => {
                 </span>
               </div>
             </div>
-            {/* Button */}
-            <button
-              disabled={loading} // sync disabled state to loading
-              className="flex justify-center items-center gap-2 py-2 px-3 xl:py-4 xl:px-6 text-lg text-[--whitesmoke] border-2 border-none rounded-md bg-neutral-600 hover:opacity-80 transition-all duration-300 ease-in-out"
-            >
-              {/* conditional rendering content based on loading state */}
-              {loading ? (
-                <>
-                  <LuLoader />
-                  <span className="pl-3">Loading...</span>
-                </>
-              ) : (
-                "Sign Up"
-              )}
-            </button>
 
+            {/* Button */}
+            <Button
+              // conditional rendering content based on loading state
+              disabled={loading}
+              label={
+                loading ? (
+                  <div className="flex items-center">
+                    <LuLoader />
+                    <span className="pl-3">Loading...</span>
+                  </div>
+                ) : (
+                  "Sign Up"
+                )
+              }
+              className="text-lg lg:text-xl text-[--whitesmoke] border-neutral-600 bg-neutral-600"
+            />
             {/* Alert/Modal */}
             {errMsg && (
               <div className="max-w-xl p-3 rounded-lg text-red-600 bg-red-100">
                 {errMsg}
               </div>
             )}
+
+            <hr />
+
+            {/* Google Auth */}
+            <h4 className=" text-center font-medium">
+              Or sign up with Google account
+            </h4>
+            <OAuth />
           </form>
           <div className="w-full flex gap-2 justify-center">
             <span>Already Have an Account?</span>

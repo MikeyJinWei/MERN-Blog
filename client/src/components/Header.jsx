@@ -1,7 +1,7 @@
 import { Link, useLocation, NavLink } from "react-router-dom";
 import { useEffect, useState } from "react";
-import Button from "../Button";
-import Tag from "../Tag";
+import Button from "./Button";
+import Tag from "./Tag";
 
 import { BsFillMoonStarsFill } from "react-icons/bs";
 import { CgMenuRightAlt } from "react-icons/cg";
@@ -10,8 +10,8 @@ import { RiPlantLine } from "react-icons/ri";
 import { TbMusicHeart } from "react-icons/tb";
 import { IoNewspaperOutline, IoClose } from "react-icons/io5";
 import { FiSearch } from "react-icons/fi";
-import Logo from "../Logo";
-import Container from "../Container";
+import Logo from "./Logo";
+import Container from "./Container";
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);

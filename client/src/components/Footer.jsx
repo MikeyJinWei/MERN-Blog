@@ -1,5 +1,5 @@
 import React from "react";
-import Container from "../Container";
+import Container from "./Container";
 import { Link } from "react-router-dom";
 import {
   FaGithub,
@@ -9,7 +9,7 @@ import {
   FaBehanceSquare,
 } from "react-icons/fa";
 import { TbBrandDribbbleFilled } from "react-icons/tb";
-import Button from "../Button";
+import Button from "./Button";
 
 const Footer = () => {
   return (

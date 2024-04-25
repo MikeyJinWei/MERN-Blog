@@ -5,9 +5,9 @@ import Register from "./pages/Register";
 import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
 import Projects from "./pages/Projects";
-import Header from "./components/header/Header";
+import Header from "./components/Header";
 import Search from "./pages/Search";
-import Footer from "./components/footer/Footer";
+import Footer from "./components/Footer";
 
 const App = () => {
   return (

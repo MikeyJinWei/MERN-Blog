@@ -4,7 +4,7 @@ const Container = ({ children, className }) => {
   return (
     <div
       className={twMerge(
-        "max-w-[1600px] my-10 mx-auto py-4 md:py-8 px-4 md:px-6",
+        "max-w-[1600px] my-8 mx-auto py-2 md:py-4 px-4 md:px-6",
         className
       )}
     >
