@@ -1,21 +1,28 @@
 import { Link, useLocation, NavLink } from "react-router-dom";
 import { useEffect, useState } from "react";
-import Button from "./Button";
-import Tag from "./Tag";
+import Button from "../Button";
+import Tag from "../Tag";
+import Logo from "../Logo";
+import Container from "../Container";
+import Avatar from "../Avatar";
+
+import { useSelector } from "react-redux";
 
 import { BsFillMoonStarsFill } from "react-icons/bs";
 import { CgMenuRightAlt } from "react-icons/cg";
-import { FaCode } from "react-icons/fa6";
+import { FaCode, FaUser, FaUserCircle } from "react-icons/fa";
 import { RiPlantLine } from "react-icons/ri";
 import { TbMusicHeart } from "react-icons/tb";
 import { IoNewspaperOutline, IoClose } from "react-icons/io5";
 import { FiSearch } from "react-icons/fi";
-import Logo from "./Logo";
-import Container from "./Container";
+import Dropdown from "./Dropdown";
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isCollapsed, setIsCollapsed] = useState(false);
+
+  // 從 redux 取得當前使用者狀態
+  const { currentUser } = useSelector((state) => state.user);
 
   // handle scroll
   useEffect(() => {
@@ -30,7 +37,7 @@ const Header = () => {
   }, [isScrolled]);
 
   // handle collapsed
-  const handleCollapsesd = () => {
+  const handleCollapsed = () => {
     setIsCollapsed(!isCollapsed);
   };
 
@@ -87,7 +94,7 @@ const Header = () => {
               </div>
 
               {/* Nav Link */}
-              <div className="hidden xl:flex gap-1 text-base text-black">
+              <div className="hidden xl:flex items-center gap-1 text-base text-black">
                 <Button
                   label=""
                   icon={<BsFillMoonStarsFill />}
@@ -105,36 +112,63 @@ const Header = () => {
                     className="border-2 bg-transparent border-none hover:bg-neutral-300"
                   />
                 </NavLink>
+                {currentUser ? (
+                  <div
+                    className="relative cursor-pointer"
+                    onClick={handleCollapsed}
+                  >
+                    <Avatar imgSrc={currentUser.profilePicture} />
+                    <div className={`${isCollapsed ? "block" : "hidden"}`}>
+                      <Dropdown
+                        username={currentUser.username}
+                        email={currentUser.email}
+                      />
+                    </div>
+                  </div>
+                ) : (
+                  <>
+                    <NavLink to="/login">
+                      <Button
+                        label="Log in"
+                        className="text-white border-none bg-neutral-600"
+                      />
+                    </NavLink>
+                    <NavLink>
+                      <Button
+                        label=""
+                        icon={<FiSearch />}
+                        className="gap-0 text-xl border-none text-blue-500 bg-transparent hover:bg-neutral-300"
+                      />
+                    </NavLink>
+                  </>
+                )}
+              </div>
+
+              {/* Mobile Nav Link */}
+              <div className="flex xl:hidden items-center gap-1 md:gap-5">
+                <Button
+                  label=""
+                  icon={<BsFillMoonStarsFill />}
+                  className="text-lg md:text-xl gap-0 border-none bg-transparent hover:bg-neutral-300"
+                />
+
                 <NavLink to="/login">
                   <Button
                     label="Log in"
                     className="text-white border-none bg-neutral-600"
                   />
                 </NavLink>
-                <Button
-                  label=""
-                  icon={<FiSearch />}
-                  className="gap-0 text-xl border-none text-blue-500 bg-transparent hover:bg-neutral-300"
-                />
-              </div>
-
-              {/* Mobile Nav Link */}
-              <div className="flex xl:hidden items-center gap-2 md:gap-5">
-                <Button
-                  label=""
-                  icon={<BsFillMoonStarsFill />}
-                  className="text-lg md:text-xl gap-0 border-none bg-transparent hover:bg-neutral-300"
-                />
-                <Link to="/login">
+                <NavLink>
                   <Button
-                    label="Log in"
-                    className="text-white border-neutral-600 bg-neutral-600"
+                    label=""
+                    icon={<FiSearch />}
+                    className="gap-0 text-xl border-none text-blue-500 bg-transparent hover:bg-neutral-300"
                   />
-                </Link>
+                </NavLink>
 
                 {/* Mobile Menu Toggle */}
                 <button
-                  onClick={handleCollapsesd}
+                  onClick={handleCollapsed}
                   className="flex justify-center items-center gap-2 py-1 xl:py-2 px-1 xl:px-6 text-3xl border-none rounded-md bg-none hover:bg-neutral-300 hover:opacity-8 transition-all duration-300 ease-in-out"
                 >
                   {isCollapsed ? <IoClose /> : <CgMenuRightAlt />}

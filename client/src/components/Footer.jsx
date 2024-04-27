@@ -20,7 +20,10 @@ const Footer = () => {
           <ul className="col-span-1 flex flex-col gap-3 p-1">
             <h3 className="text-lg font-medium">About</h3>
             <li>
-              <Link to="/about" className="hover:text-indigo-500">
+              <Link
+                to="/about"
+                className="hover:text-indigo-500 transition-all duration-300 ease-in-out"
+              >
                 About this blog
               </Link>
             </li>
@@ -32,7 +35,7 @@ const Footer = () => {
             <li>
               <Link
                 to="https://github.com/MikeyJinWei?tab=repositories"
-                className="hover:text-indigo-500"
+                className="hover:text-indigo-500 transition-all duration-300 ease-in-out"
               >
                 Privacy Policy
               </Link>
@@ -40,7 +43,7 @@ const Footer = () => {
             <li>
               <Link
                 to="https://github.com/MikeyJinWei?tab=repositories"
-                className="hover:text-indigo-500"
+                className="hover:text-indigo-500 transition-all duration-300 ease-in-out"
               >
                 Terms & Conditions
               </Link>
