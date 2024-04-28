@@ -13,8 +13,8 @@ import Button from "./Button";
 
 const Footer = () => {
   return (
-    <footer className="left-0 right-0 bg-white shadow-inner">
-      <Container className="my-0 border-t-2 border-stone-200">
+    <footer className="left-0 right-0 border-t-2 dark:bg-bg-stone-800 shadow-inner">
+      <Container className="my-0">
         <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
           {/* About */}
           <ul className="col-span-1 flex flex-col gap-3 p-1">
@@ -63,7 +63,7 @@ const Footer = () => {
                 >
                   <Button
                     icon={<FaGithub />}
-                    className="py-0 px-0 xl:py-0 xl:px-0 bg-transparent border-none"
+                    className="py-0 px-0 xl:py-0 xl:px-0 hover:text-stone-300 bg-inherit border-none"
                   />
                 </Link>
               </li>
@@ -77,7 +77,7 @@ const Footer = () => {
                 >
                   <Button
                     icon={<FaFacebook />}
-                    className="py-0 px-0 xl:py-0 xl:px-0 text-blue-700 bg-transparent border-none"
+                    className="py-0 px-0 xl:py-0 xl:px-0 hover:text-blue-700 bg-transparent border-none"
                   />
                 </Link>
               </li>
@@ -91,7 +91,7 @@ const Footer = () => {
                 >
                   <Button
                     icon={<TbBrandDribbbleFilled />}
-                    className="py-0 px-0 xl:py-0 xl:px-0 text-pink-400 bg-transparent border-none"
+                    className="py-0 px-0 xl:py-0 xl:px-0 hover:text-pink-400 bg-transparent border-none"
                   />
                 </Link>
               </li>
@@ -105,7 +105,7 @@ const Footer = () => {
                 >
                   <Button
                     icon={<FaBehanceSquare />}
-                    className="py-0 px-0 xl:py-0 xl:px-0 text-blue-600 bg-transparent border-none"
+                    className="py-0 px-0 xl:py-0 xl:px-0 hover:text-blue-600 bg-transparent border-none"
                   />
                 </Link>
               </li>
@@ -119,7 +119,7 @@ const Footer = () => {
                 >
                   <Button
                     icon={<FaTwitter />}
-                    className="py-0 px-0 xl:py-0 xl:px-0 text-sky-300 bg-transparent border-none"
+                    className="py-0 px-0 xl:py-0 xl:px-0 hover:text-sky-300 bg-transparent border-none"
                   />
                 </Link>
               </li>

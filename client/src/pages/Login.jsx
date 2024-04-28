@@ -93,101 +93,103 @@ const Login = () => {
   };
 
   return (
-    <Container>
-      <div className="w-full">
-        <div className="max-w-3xl flex flex-col gap-6 mx-auto p-4 md:p-8 rounded-lg shadow-lg bg-white">
-          {/* Heading */}
-          <div className="flex flex-col mx-auto text-center gap-3">
-            <div>
-              <h1 className="text-4xl md:text-5xl">Welcome back to</h1>
+    <div>
+      <Container>
+        <div className="w-full">
+          <div className="max-w-3xl flex flex-col gap-6 mx-auto p-4 md:p-8 rounded-lg shadow-lg bg-[--whitesmoke] dark:bg-stone-700">
+            {/* Heading */}
+            <div className="flex flex-col mx-auto text-center gap-3">
+              <div>
+                <h1 className="text-4xl md:text-5xl">Welcome back to</h1>
+              </div>
+              {/* Logo */}
+              <Logo className="text-center scale-110" />
+              <h3 className="text-lg">Let's enter your info to sign in</h3>
             </div>
-            {/* Logo */}
-            <Logo className="text-center scale-110" />
-            <h3 className="text-lg">Let's enter your info to sign in</h3>
-          </div>
-          <form
-            onSubmit={handleSubmit}
-            className="w-full max-w-md mx-auto flex flex-col gap-4"
-          >
-            {/* Email */}
-            <div>
-              <Label content="Email" />
-              <Input
-                onChange={handleChange}
-                id="email"
-                type="email"
-                placeholder="john@email.com"
-              />
-            </div>
-
-            {/* Password */}
-            <div>
-              <Label content="Password" />
-              <div className="flex">
+            <form
+              onSubmit={handleSubmit}
+              className="w-full max-w-md mx-auto flex flex-col gap-4"
+            >
+              {/* Email */}
+              <div>
+                <Label content="Email" />
                 <Input
                   onChange={handleChange}
-                  id="password"
-                  type={visible ? "text" : "password"}
-                  placeholder="Your password......"
+                  id="email"
+                  type="email"
+                  placeholder="john@email.com"
                 />
-                <span className="flex justify-around" onClick={handleVisible}>
-                  {visible ? (
-                    <IoMdEye
-                      size={20}
-                      className="absolute mt-3.5 mr-12 cursor-pointer"
-                    />
+              </div>
+
+              {/* Password */}
+              <div>
+                <Label content="Password" />
+                <div className="flex">
+                  <Input
+                    onChange={handleChange}
+                    id="password"
+                    type={visible ? "text" : "password"}
+                    placeholder="Your password......"
+                  />
+                  <span className="flex justify-around" onClick={handleVisible}>
+                    {visible ? (
+                      <IoMdEye
+                        size={20}
+                        className="absolute mt-3.5 mr-12 cursor-pointer"
+                      />
+                    ) : (
+                      <IoMdEyeOff
+                        size={20}
+                        className="absolute mt-3.5 mr-12 cursor-pointer"
+                      />
+                    )}
+                  </span>
+                </div>
+              </div>
+
+              {/* Button */}
+              <Button
+                // conditional rendering content based on loading state
+                disabled={loading}
+                label={
+                  loading ? (
+                    <div className="flex items-center">
+                      <LuLoader />
+                      <span className="pl-3">Loading...</span>
+                    </div>
                   ) : (
-                    <IoMdEyeOff
-                      size={20}
-                      className="absolute mt-3.5 mr-12 cursor-pointer"
-                    />
-                  )}
-                </span>
-              </div>
+                    "Sign In"
+                  )
+                }
+                className="text-lg lg:text-xl text-[--whitesmoke] border-neutral-600 bg-neutral-600"
+              />
+
+              {/* Alert/Modal */}
+              {errMsg && (
+                <div className="max-w-xl p-3 rounded-lg text-red-600 bg-red-100">
+                  {errMsg}
+                </div>
+              )}
+
+              <hr />
+
+              {/* Google Auth */}
+              <h4 className=" text-center">Or sign in with Google account</h4>
+              <OAuth />
+            </form>
+            <div className="w-full flex gap-2 justify-center">
+              <span>Don't have an account? </span>
+              <Link
+                to="/register"
+                className="font-medium text-indigo-600 hover:text-indigo-500 transition-colors duration-300 ease-in-out"
+              >
+                Let's Sign Up
+              </Link>
             </div>
-
-            {/* Button */}
-            <Button
-              // conditional rendering content based on loading state
-              disabled={loading}
-              label={
-                loading ? (
-                  <div className="flex items-center">
-                    <LuLoader />
-                    <span className="pl-3">Loading...</span>
-                  </div>
-                ) : (
-                  "Sign In"
-                )
-              }
-              className="text-lg lg:text-xl text-[--whitesmoke] border-neutral-600 bg-neutral-600"
-            />
-
-            {/* Alert/Modal */}
-            {errMsg && (
-              <div className="max-w-xl p-3 rounded-lg text-red-600 bg-red-100">
-                {errMsg}
-              </div>
-            )}
-
-            <hr />
-
-            {/* Google Auth */}
-            <h4 className=" text-center">Or sign in with Google account</h4>
-            <OAuth />
-          </form>
-          <div className="w-full flex gap-2 justify-center">
-            <span>Don't have an account? </span>
-            <Link
-              to="/register"
-              className="font-medium text-indigo-600 hover:text-indigo-500 transition-colors duration-300 ease-in-out"
-            >
-              Let's Sign Up
-            </Link>
           </div>
         </div>
-      </div>
-    </Container>
+      </Container>
+    </div>
   );
 };
 

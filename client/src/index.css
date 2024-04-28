@@ -13,8 +13,8 @@
   body,
   :root {
     /* height: 100%; */
-    color: rgb(87 83 78);
-    background: #f7f7f7;
+
+    /* background: #f7f7f7; */
     /* background: #020202; */
     /* @apply dark h-full bg-[--whitesmoke] dark:bg-black */
   }
@@ -46,6 +46,6 @@
   }
 
   .active {
-    @apply text-blue-600 !important;
+    /* @apply text-blue-600 !important; */
   }
 }

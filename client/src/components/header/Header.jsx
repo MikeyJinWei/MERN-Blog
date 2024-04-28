@@ -1,4 +1,4 @@
-import { Link, useLocation, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Button from "../Button";
 import Tag from "../Tag";
@@ -6,7 +6,8 @@ import Logo from "../Logo";
 import Container from "../Container";
 import Avatar from "../Avatar";
 
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { toggleTheme } from "../../redux/theme/themeSlice";
 
 import { BsFillMoonStarsFill } from "react-icons/bs";
 import { CgMenuRightAlt } from "react-icons/cg";
@@ -20,8 +21,10 @@ import Dropdown from "./Dropdown";
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isCollapsed, setIsCollapsed] = useState(false);
+  // 初始化 `useDispatch()` hook
+  const dispatch = useDispatch();
 
-  // 從 redux 取得當前使用者狀態
+  // 從 redux reducer 解構出當前使用者狀態
   const { currentUser } = useSelector((state) => state.user);
 
   // handle scroll
@@ -44,8 +47,8 @@ const Header = () => {
   return (
     <>
       <header
-        className={`z-10 top-0 sticky w-full shadow-sm ${
-          isScrolled ? "bg-white" : "bg-[--whitesmoke] shadow-md"
+        className={`z-20 top-0 sticky w-full shadow-sm dark:shadow-stone-700 ${
+          isScrolled ? "shadow-md bg-white dark:bg-stone-800" : ""
         }`}
       >
         <Container className="my-0 mt-0 pt-4 md:pt-8 pb-2 md:pb-3">
@@ -55,20 +58,23 @@ const Header = () => {
               <Logo />
 
               {/* Tags */}
-              <div className="translate-x-1/4 2xl:translate-x-[40%] hidden xl:flex gap-2 text-sm text-black">
+              <div className="translate-x-1/4 2xl:translate-x-[40%] hidden xl:flex gap-2 text-sm">
+                {/* teal-100 */}
                 <Tag
                   label="Tech"
-                  className="font-medium border-teal-100 bg-teal-100"
+                  className="font-medium"
                   icon={<FaCode size={20} />}
                 />
+                {/* amber-100 */}
                 <Tag
                   label="Life"
-                  className="font-medium border-amber-100 bg-amber-100"
+                  className="font-medium dark:bg-transparent"
                   icon={<RiPlantLine size={20} />}
                 />
+                {/* indigo-200 */}
                 <Tag
                   label="Music"
-                  className="font-medium border-indigo-200 bg-indigo-200"
+                  className="font-medium dark:bg-transparent"
                   icon={<TbMusicHeart size={20} />}
                 />
                 {/* <Tag
@@ -81,9 +87,10 @@ const Header = () => {
                       className="font-medium border-slate-100 bg-slate-100"
                       icon={<LiaBookSolid size={20} />}
                     /> */}
+                {/* neutral-200 */}
                 <Tag
                   label="News"
-                  className="font-medium border-neutral-200 bg-neutral-200"
+                  className="font-medium"
                   icon={<IoNewspaperOutline size={20} />}
                 />
                 {/* <Tag
@@ -94,12 +101,22 @@ const Header = () => {
               </div>
 
               {/* Nav Link */}
-              <div className="hidden xl:flex items-center gap-1 text-base text-black">
-                <Button
+              <div className="hidden xl:flex items-center gap-1 text-base">
+                {/* dark/light toggle */}
+                <div
+                  className="p-4 cursor-pointer hover:opacity-80"
+                  onClick={() => dispatch(toggleTheme())}
+                >
+                  <BsFillMoonStarsFill />
+                </div>
+                {/* <Button
+                  dispatch={dispatch}
+                  toggleTheme={toggleTheme}
+                  onClick={() => dispatch(toggleTheme())}
                   label=""
                   icon={<BsFillMoonStarsFill />}
                   className="text-xl gap-0 border-none bg-transparent hover:bg-neutral-300"
-                />
+                /> */}
                 <NavLink to="/about">
                   <Button
                     label="About"

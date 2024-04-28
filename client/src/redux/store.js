@@ -1,12 +1,14 @@
 import { configureStore, combineReducers } from "@reduxjs/toolkit";
 import userReducer from "./user/userSlice";
+import themeReducer from "./theme/themeSlice";
 import { persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 import persistStore from "redux-persist/es/persistStore";
 
 // 使用 combineReducers 集中管理 reducer
 const rootReducer = combineReducers({
-  user: userReducer,
+  user: userReducer, // 管理全域使用者狀態
+  theme: themeReducer, // 管理全域顏色主題狀態
 });
 
 // 初始化 persisted reducer 的配置
