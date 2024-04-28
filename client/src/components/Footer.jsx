@@ -13,8 +13,8 @@ import Button from "./Button";
 
 const Footer = () => {
   return (
-    <footer className="left-0 right-0 border-t-2 dark:bg-bg-stone-800 shadow-inner">
-      <Container className="my-0">
+    <footer className="left-0 right-0 shadow-inner dark:shadow-stone-600">
+      <Container className="my-0 py-6 md:py-6">
         <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
           {/* About */}
           <ul className="col-span-1 flex flex-col gap-3 p-1">
@@ -128,7 +128,7 @@ const Footer = () => {
 
           {/* copyright */}
           <div className="col-span-3 text-center">
-            <hr className="my-4" />
+            <hr className="my-4 dark:border-stone-600" />
             <Link to="/">
               <span>© {new Date().getFullYear()} Elements </span>
             </Link>

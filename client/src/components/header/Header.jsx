@@ -21,13 +21,14 @@ import Dropdown from "./Dropdown";
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isCollapsed, setIsCollapsed] = useState(false);
+  const [dropdown, setDropdown] = useState(false);
   // 初始化 `useDispatch()` hook
   const dispatch = useDispatch();
 
   // 從 redux reducer 解構出當前使用者狀態
   const { currentUser } = useSelector((state) => state.user);
 
-  // handle scroll
+  // handle 滾動 navbar 效果
   useEffect(() => {
     const handleScroll = () => {
       const scrolled = window.scrollY > 0;
@@ -39,9 +40,14 @@ const Header = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, [isScrolled]);
 
-  // handle collapsed
+  // handle mobile menu 開闔
   const handleCollapsed = () => {
     setIsCollapsed(!isCollapsed);
+  };
+
+  // handle avatar dropdown 開闔
+  const handleDropdown = () => {
+    setDropdown(!dropdown);
   };
 
   return (
@@ -58,7 +64,7 @@ const Header = () => {
               <Logo />
 
               {/* Tags */}
-              <div className="translate-x-1/4 2xl:translate-x-[40%] hidden xl:flex gap-2 text-sm">
+              <div className="translate-x-1/4 2xl:translate-x-[30%] hidden xl:flex gap-2 text-sm">
                 {/* teal-100 */}
                 <Tag
                   label="Tech"
@@ -103,20 +109,14 @@ const Header = () => {
               {/* Nav Link */}
               <div className="hidden xl:flex items-center gap-1 text-base">
                 {/* dark/light toggle */}
-                <div
-                  className="p-4 cursor-pointer hover:opacity-80"
-                  onClick={() => dispatch(toggleTheme())}
-                >
-                  <BsFillMoonStarsFill />
-                </div>
-                {/* <Button
+                <Button
                   dispatch={dispatch}
                   toggleTheme={toggleTheme}
                   onClick={() => dispatch(toggleTheme())}
                   label=""
                   icon={<BsFillMoonStarsFill />}
                   className="text-xl gap-0 border-none bg-transparent hover:bg-neutral-300"
-                /> */}
+                />
                 <NavLink to="/about">
                   <Button
                     label="About"
@@ -162,26 +162,37 @@ const Header = () => {
               </div>
 
               {/* Mobile Nav Link */}
+              {/* dark/light toggle */}
               <div className="flex xl:hidden items-center gap-1 md:gap-5">
                 <Button
+                  dispatch={dispatch}
+                  toggleTheme={toggleTheme}
+                  onClick={() => dispatch(toggleTheme())}
                   label=""
                   icon={<BsFillMoonStarsFill />}
-                  className="text-lg md:text-xl gap-0 border-none bg-transparent hover:bg-neutral-300"
+                  className="text-xl gap-0 border-none bg-transparent"
                 />
-
-                <NavLink to="/login">
-                  <Button
-                    label="Log in"
-                    className="text-white border-none bg-neutral-600"
-                  />
-                </NavLink>
-                <NavLink>
-                  <Button
-                    label=""
-                    icon={<FiSearch />}
-                    className="gap-0 text-xl border-none text-blue-500 bg-transparent hover:bg-neutral-300"
-                  />
-                </NavLink>
+                {currentUser ? (
+                  <div
+                    className="relative cursor-pointer"
+                    onClick={handleDropdown}
+                  >
+                    <Avatar imgSrc={currentUser.profilePicture} />
+                    <div className={`${dropdown ? "block" : "hidden"}`}>
+                      <Dropdown
+                        username={currentUser.username}
+                        email={currentUser.email}
+                      />
+                    </div>
+                  </div>
+                ) : (
+                  <NavLink to="/login">
+                    <Button
+                      label="Log in"
+                      className="text-white border-none bg-neutral-600"
+                    />
+                  </NavLink>
+                )}
 
                 {/* Mobile Menu Toggle */}
                 <button

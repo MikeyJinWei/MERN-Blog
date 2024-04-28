@@ -6,7 +6,6 @@ import Button from "../components/Button";
 import Label from "../components/Label";
 
 import { IoMdEye, IoMdEyeOff } from "react-icons/io";
-import { FaGoogle } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
 import { LuLoader } from "react-icons/lu";
 
@@ -96,7 +95,7 @@ const Login = () => {
     <div>
       <Container>
         <div className="w-full">
-          <div className="max-w-3xl flex flex-col gap-6 mx-auto p-4 md:p-8 rounded-lg shadow-lg bg-[--whitesmoke] dark:bg-stone-700">
+          <div className="max-w-3xl flex flex-col gap-6 mx-auto p-4 md:p-8 border-[1px] dark:border-stone-600 rounded-lg shadow-lg dark:shadow-stone-700 bg-[--whitesmoke] dark:bg-stone-700">
             {/* Heading */}
             <div className="flex flex-col mx-auto text-center gap-3">
               <div>
@@ -118,6 +117,7 @@ const Login = () => {
                   id="email"
                   type="email"
                   placeholder="john@email.com"
+                  className="text-stone-600"
                 />
               </div>
 
@@ -130,8 +130,12 @@ const Login = () => {
                     id="password"
                     type={visible ? "text" : "password"}
                     placeholder="Your password......"
+                    className="text-stone-600"
                   />
-                  <span className="flex justify-around" onClick={handleVisible}>
+                  <span
+                    className="flex justify-around dark:text-stone-600"
+                    onClick={handleVisible}
+                  >
                     {visible ? (
                       <IoMdEye
                         size={20}
@@ -161,7 +165,7 @@ const Login = () => {
                     "Sign In"
                   )
                 }
-                className="text-lg lg:text-xl text-[--whitesmoke] border-neutral-600 bg-neutral-600"
+                className="text-lg lg:text-xl text-[--whitesmoke] border-2 border-neutral-600 bg-neutral-600 dark:bg-neutral-400 dark:border-neutral-400"
               />
 
               {/* Alert/Modal */}
@@ -181,7 +185,7 @@ const Login = () => {
               <span>Don't have an account? </span>
               <Link
                 to="/register"
-                className="font-medium text-indigo-600 hover:text-indigo-500 transition-colors duration-300 ease-in-out"
+                className="font-medium text-indigo-600 dark:text-indigo-500 hover:text-indigo-400 dark:hover:text-indigo-400 transition-colors duration-300 ease-in-out"
               >
                 Let's Sign Up
               </Link>
