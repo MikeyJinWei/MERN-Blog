@@ -8,11 +8,8 @@ const ProfileDropdown = ({ username, email }) => {
         <div>{username}</div>
         <div className="font-medium truncate">{email}</div>
       </div>
-      <div className="pb-4 border-b-[1px]">
-        <Link
-          to="/dashboard?tab=profile"
-          className="hover:text-indigo-500 transition-all duration-300 ease-in-out"
-        >
+      <div className="pb-4 hover:text-indigo-500 border-b-[1px] transition-all duration-300 ease-in-out">
+        <Link to="/dashboard?tab=profile" className="">
           Profile
         </Link>
       </div>

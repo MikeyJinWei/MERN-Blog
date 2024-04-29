@@ -155,7 +155,7 @@ const Header = () => {
                     <NavLink to="/login">
                       <Button
                         label="Log in"
-                        className="text-white border-none bg-neutral-600"
+                        className="text-white dark:text-neutral-600 border-none bg-neutral-600 dark:bg-[--whitesmoke]"
                       />
                     </NavLink>
                     <NavLink>
@@ -199,7 +199,7 @@ const Header = () => {
                   <NavLink to="/login">
                     <Button
                       label="Log in"
-                      className="text-white border-none bg-neutral-600"
+                      className="text-[--whitesmoke] dark:text-neutral-600 border-none bg-neutral-600 dark:bg-[--whitesmoke]"
                     />
                   </NavLink>
                 )}

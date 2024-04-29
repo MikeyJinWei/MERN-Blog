@@ -95,7 +95,7 @@ const Login = () => {
     <div className="min-h-screen">
       <Container>
         <div className="w-full">
-          <div className="max-w-3xl flex flex-col gap-6 mx-auto p-4 md:p-8 border-2 border-stone-100 dark:border-stone-700/80 rounded-lg shadow shadow-stone-500/30">
+          <div className="max-w-3xl flex flex-col gap-6 mx-auto p-4 md:p-8 border-2 border-stone-100 dark:border-stone-700/80 rounded-lg shadow shadow-neutral-500/30">
             {/* Heading */}
             <div className="flex flex-col mx-auto text-center gap-3">
               <div>
@@ -107,7 +107,7 @@ const Login = () => {
             </div>
             <form
               onSubmit={handleSubmit}
-              className="w-full max-w-md mx-auto flex flex-col gap-4"
+              className="w-full max-w-md mx-auto flex flex-col gap-3.5"
             >
               {/* Email */}
               <div>
@@ -117,7 +117,6 @@ const Login = () => {
                   id="email"
                   type="email"
                   placeholder="john@email.com"
-                  className="text-stone-600"
                 />
               </div>
 
@@ -165,7 +164,7 @@ const Login = () => {
                     "Sign In"
                   )
                 }
-                className="text-lg lg:text-xl text-[--whitesmoke] border-2 border-neutral-600 bg-neutral-600 dark:bg-neutral-400 dark:border-neutral-400"
+                className="text-lg lg:text-xl text-[--whitesmoke] dark:text-neutral-600 border-2 border-neutral-600 dark:border-[--whitesmoke] bg-neutral-600 dark:bg-[--whitesmoke]"
               />
 
               {/* Alert/Modal */}
