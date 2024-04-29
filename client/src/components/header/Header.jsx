@@ -5,6 +5,7 @@ import Tag from "../Tag";
 import Logo from "../Logo";
 import Container from "../Container";
 import Avatar from "../Avatar";
+import ProfileDropdown from "./ProfileDropdown";
 
 import { useSelector, useDispatch } from "react-redux";
 import { toggleTheme } from "../../redux/theme/themeSlice";
@@ -16,7 +17,7 @@ import { RiPlantLine } from "react-icons/ri";
 import { TbMusicHeart } from "react-icons/tb";
 import { IoNewspaperOutline, IoClose } from "react-icons/io5";
 import { FiSearch } from "react-icons/fi";
-import Dropdown from "./Dropdown";
+import { PiSunFill } from "react-icons/pi";
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -27,6 +28,9 @@ const Header = () => {
 
   // 從 redux reducer 解構出當前使用者狀態
   const { currentUser } = useSelector((state) => state.user);
+
+  //
+  const { theme } = useSelector((state) => state.theme);
 
   // handle 滾動 navbar 效果
   useEffect(() => {
@@ -45,7 +49,7 @@ const Header = () => {
     setIsCollapsed(!isCollapsed);
   };
 
-  // handle avatar dropdown 開闔
+  // handle profile dropdown 開闔
   const handleDropdown = () => {
     setDropdown(!dropdown);
   };
@@ -53,8 +57,10 @@ const Header = () => {
   return (
     <>
       <header
-        className={`z-20 top-0 sticky w-full shadow-sm dark:shadow-stone-700 ${
-          isScrolled ? "shadow-md bg-white dark:bg-stone-800" : ""
+        className={`z-20 top-0 sticky w-full shadow-sm ${
+          isScrolled
+            ? "shadow-md bg-white dark:bg-stone-800 dark:shadow-stone-600"
+            : ""
         }`}
       >
         <Container className="my-0 mt-0 pt-4 md:pt-8 pb-2 md:pb-3">
@@ -114,8 +120,10 @@ const Header = () => {
                   toggleTheme={toggleTheme}
                   onClick={() => dispatch(toggleTheme())}
                   label=""
-                  icon={<BsFillMoonStarsFill />}
-                  className="text-xl gap-0 border-none bg-transparent hover:bg-neutral-300"
+                  className="gap-0 text-lg border-none bg-transparent hover:bg-neutral-200 dark:hover:bg-neutral-500"
+                  icon={
+                    theme === "light" ? <BsFillMoonStarsFill /> : <PiSunFill />
+                  }
                 />
                 <NavLink to="/about">
                   <Button
@@ -136,7 +144,7 @@ const Header = () => {
                   >
                     <Avatar imgSrc={currentUser.profilePicture} />
                     <div className={`${isCollapsed ? "block" : "hidden"}`}>
-                      <Dropdown
+                      <ProfileDropdown
                         username={currentUser.username}
                         email={currentUser.email}
                       />
@@ -154,7 +162,7 @@ const Header = () => {
                       <Button
                         label=""
                         icon={<FiSearch />}
-                        className="gap-0 text-xl border-none text-blue-500 bg-transparent hover:bg-neutral-300"
+                        className="gap-0 text-xl border-none text-blue-500 dark:text-[--whitesmoke] bg-transparent hover:bg-neutral-300"
                       />
                     </NavLink>
                   </>
@@ -169,8 +177,10 @@ const Header = () => {
                   toggleTheme={toggleTheme}
                   onClick={() => dispatch(toggleTheme())}
                   label=""
-                  icon={<BsFillMoonStarsFill />}
-                  className="text-xl gap-0 border-none bg-transparent"
+                  className="gap-0 text-lg border-none bg-transparent hover:bg-stone-200 dark:hover:bg-stone-500"
+                  icon={
+                    theme === "light" ? <BsFillMoonStarsFill /> : <PiSunFill />
+                  }
                 />
                 {currentUser ? (
                   <div
@@ -179,7 +189,7 @@ const Header = () => {
                   >
                     <Avatar imgSrc={currentUser.profilePicture} />
                     <div className={`${dropdown ? "block" : "hidden"}`}>
-                      <Dropdown
+                      <ProfileDropdown
                         username={currentUser.username}
                         email={currentUser.email}
                       />
@@ -228,7 +238,7 @@ const Header = () => {
                     <Button
                       label=""
                       icon={<FiSearch />}
-                      className="p-2 text-xl text-blue-500  border-none bg-transparent"
+                      className="p-2 text-xl text-blue-500 dark:text-[--whitesmoke] border-none bg-transparent"
                     />
                   </NavLink>
                 </div>

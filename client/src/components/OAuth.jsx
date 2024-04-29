@@ -65,7 +65,7 @@ const OAuth = ({ onClick }) => {
       type="button"
       label="Continue with Google"
       icon={<FcGoogle />}
-      className="text-lg lg:text-xl border-2 border-stone-600 dark:border-[--whitesmoke]"
+      className="text-lg lg:text-xl hover:text-[--whitesmoke] dark:hover:text-stone-900 hover:bg-stone-600 dark:hover:bg-[--whitesmoke] border-2 border-stone-600 dark:border-[--whitesmoke]"
     />
   );
 };

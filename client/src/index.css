@@ -9,15 +9,11 @@
     /* --bg-color: #f7f7f7; */
   }
 
-  html,
+  /* html,
   body,
   :root {
-    /* height: 100%; */
-
-    /* background: #f7f7f7; */
-    /* background: #020202; */
-    /* @apply dark h-full bg-[--whitesmoke] dark:bg-black */
-  }
+    height: 100vh;
+  } */
 
   * {
     margin: 0;
@@ -32,12 +28,14 @@
   .blue-gradient-text {
     background: linear-gradient(90deg, #38BDF8 0%, #C084FC 50%, #F87171 100%);
     -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
   }
 
   .dark-gradient-text {
     background: linear-gradient(90deg, #0f172a 0%, #FED7AA 100%);
     -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
   }
 

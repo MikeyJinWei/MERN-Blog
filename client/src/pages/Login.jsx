@@ -92,10 +92,10 @@ const Login = () => {
   };
 
   return (
-    <div>
+    <div className="min-h-screen">
       <Container>
         <div className="w-full">
-          <div className="max-w-3xl flex flex-col gap-6 mx-auto p-4 md:p-8 border-[1px] dark:border-stone-600 rounded-lg shadow-lg dark:shadow-stone-700 bg-[--whitesmoke] dark:bg-stone-700">
+          <div className="max-w-3xl flex flex-col gap-6 mx-auto p-4 md:p-8 border-2 border-stone-100 dark:border-stone-700/80 rounded-lg shadow shadow-stone-500/30">
             {/* Heading */}
             <div className="flex flex-col mx-auto text-center gap-3">
               <div>

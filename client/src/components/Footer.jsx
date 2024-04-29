@@ -1,5 +1,5 @@
-import React from "react";
 import Container from "./Container";
+import Button from "./Button";
 import { Link } from "react-router-dom";
 import {
   FaGithub,
@@ -9,12 +9,11 @@ import {
   FaBehanceSquare,
 } from "react-icons/fa";
 import { TbBrandDribbbleFilled } from "react-icons/tb";
-import Button from "./Button";
 
 const Footer = () => {
   return (
-    <footer className="left-0 right-0 shadow-inner dark:shadow-stone-600">
-      <Container className="my-0 py-6 md:py-6">
+    <footer className="left-0 right-0 border-t-[1px] shadow-[3px_0_0_0_rgba(0,0,0,0)] shadow-stone-300 dark:shadow-stone-600">
+      <Container className="my-0 py-6 md:py-9">
         <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
           {/* About */}
           <ul className="col-span-1 flex flex-col gap-3 p-1">
