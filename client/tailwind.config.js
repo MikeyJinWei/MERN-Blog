@@ -9,9 +9,11 @@ export default {
     extend: {
       colors: {
         whitesmoke: "rgb(var(--whitesmoke))",
+
         secondary: "rgb(var(--secondary))",
 
         textPrimary: "rgb(var(--text-primary))",
+        textLight: "rgb(var(--text-light))",
 
         bgPrimary: "rgb(var(--bg-primary))",
 
@@ -20,7 +22,14 @@ export default {
         borderPrimary: "rgb(var(--border-primary))",
         borderSecondary: "rgb(var(--border-secondary))",
 
-        hoverBgDefault: "rgb(var(--hover-bg-default))",
+        btnPrimary: "rgb(var(--btn-primary))",
+        btnPrimaryText: "rgb(var(--btn-primary-text))",
+        btnDefaultHover: "rgb(var(--btn-default-hover))",
+        btnGhost: "rgb(var(--btn-primary))",
+        btnGhostText: "rgb(var(--btn-primary-text))",
+        btnPrimaryHover: "rgb(var(--btn-primary-hover))",
+
+        shadowPrimary: "rgb(var(--shadow-primary))",
       },
     },
   },

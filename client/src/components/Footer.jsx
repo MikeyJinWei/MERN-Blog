@@ -12,7 +12,7 @@ import { TbBrandDribbbleFilled } from "react-icons/tb";
 
 const Footer = () => {
   return (
-    <footer className="left-0 right-0 border-t-[1px] shadow-[3px_0_0_0_rgba(0,0,0,0)] shadow-stone-300 dark:shadow-stone-600">
+    <footer className="left-0 right-0 border-t-[1px] border-borderSecondary/40">
       <Container className="my-0 py-6 md:py-9">
         <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
           {/* About */}

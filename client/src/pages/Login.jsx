@@ -95,7 +95,7 @@ const Login = () => {
     <div className="min-h-screen">
       <Container>
         <div className="w-full">
-          <div className="max-w-3xl flex flex-col gap-6 mx-auto p-4 md:p-8 bg-bgSecondary border-borderSecondary rounded-lg shadow">
+          <div className="max-w-3xl flex flex-col gap-6 mx-auto p-4 md:p-8 border rounded-lg border-borderSecondary shadow-lg shadow-shadowPrimary">
             {/* Heading */}
             <div className="flex flex-col mx-auto text-center gap-3">
               <div>
@@ -164,7 +164,7 @@ const Login = () => {
                     "Sign In"
                   )
                 }
-                className="text-lg lg:text-xl "
+                className="text-lg lg:text-xl text-btnPrimaryText border-2 border-borderPrimary bg-btnPrimary hover:bg-btnPrimary"
               />
 
               {/* Alert/Modal */}

@@ -10,7 +10,7 @@ const DashboardSidebar = () => {
 
   return (
     <nav className="">
-      <ul className="sticky left-0 max-w-72 flex flex-col gap-3 p-4 border-r border-stone-200 dark:border-stone-400">
+      <ul className="sticky left-0 max-w-72 flex flex-col gap-3 p-4 border-r-[1px] border-borderSecondary/40">
         <li className="">
           <Button label="Profile" icon={<FaCircleUser />} className="w-full" />
         </li>
