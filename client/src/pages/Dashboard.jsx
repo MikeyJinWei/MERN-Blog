@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import DashboardSidebar from "../components/dashboard/DashboardSidebar";
+import Container from "../components/Container";
 
 const Dashboard = () => {
   // 初始化 `useLocation`

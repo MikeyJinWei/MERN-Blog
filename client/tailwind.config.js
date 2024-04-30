@@ -16,8 +16,8 @@ export default {
         textLight: "rgb(var(--text-light))",
 
         bgPrimary: "rgb(var(--bg-primary))",
-
         bgSecondary: "rgb(var(--bg-secondary))",
+        bgLightGrey: "rgb(var(--bg-light-grey))",
 
         borderPrimary: "rgb(var(--border-primary))",
         borderSecondary: "rgb(var(--border-secondary))",
@@ -27,7 +27,6 @@ export default {
         btnDefaultHover: "rgb(var(--btn-default-hover))",
         btnGhost: "rgb(var(--btn-primary))",
         btnGhostText: "rgb(var(--btn-primary-text))",
-        btnPrimaryHover: "rgb(var(--btn-primary-hover))",
 
         shadowPrimary: "rgb(var(--shadow-primary))",
       },
