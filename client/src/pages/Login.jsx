@@ -95,7 +95,7 @@ const Login = () => {
     <div className="min-h-screen">
       <Container>
         <div className="w-full">
-          <div className="max-w-3xl flex flex-col gap-6 mx-auto p-4 md:p-8 border-2 border-stone-100 dark:border-stone-700/80 rounded-lg shadow shadow-neutral-500/30">
+          <div className="max-w-3xl flex flex-col gap-6 mx-auto p-4 md:p-8 bg-bgSecondary border-borderSecondary rounded-lg shadow">
             {/* Heading */}
             <div className="flex flex-col mx-auto text-center gap-3">
               <div>
@@ -132,7 +132,7 @@ const Login = () => {
                     className="text-stone-600"
                   />
                   <span
-                    className="flex justify-around dark:text-stone-600"
+                    className="flex justify-around text-primary"
                     onClick={handleVisible}
                   >
                     {visible ? (
@@ -164,7 +164,7 @@ const Login = () => {
                     "Sign In"
                   )
                 }
-                className="text-lg lg:text-xl text-[--whitesmoke] dark:text-neutral-600 border-2 border-neutral-600 dark:border-[--whitesmoke] bg-neutral-600 dark:bg-[--whitesmoke]"
+                className="text-lg lg:text-xl "
               />
 
               {/* Alert/Modal */}

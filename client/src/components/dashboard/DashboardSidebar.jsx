@@ -12,25 +12,13 @@ const DashboardSidebar = () => {
     <nav className="">
       <ul className="sticky left-0 max-w-72 flex flex-col gap-3 p-4 border-r border-stone-200 dark:border-stone-400">
         <li className="">
-          <Button
-            label="Profile"
-            icon={<FaCircleUser />}
-            className="w-full hover:bg-neutral-300"
-          />
+          <Button label="Profile" icon={<FaCircleUser />} className="w-full" />
         </li>
         <li className="">
-          <Button
-            label="Profile"
-            icon={<FaCircleUser />}
-            className="w-full hover:bg-neutral-300"
-          />
+          <Button label="Profile" icon={<FaCircleUser />} className="w-full" />
         </li>
         <li className="">
-          <Button
-            label="Profile"
-            icon={<FaCircleUser />}
-            className="w-full hover:bg-neutral-300"
-          />
+          <Button label="Profile" icon={<FaCircleUser />} className="w-full" />
         </li>
       </ul>
     </nav>

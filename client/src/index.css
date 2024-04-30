@@ -4,21 +4,45 @@
 
 
 @layer base {
-  :root {
-    --whitesmoke: #f7f7f7;
-    /* --bg-color: #f7f7f7; */
-  }
-
-  /* html,
-  body,
-  :root {
-    height: 100vh;
-  } */
-
   * {
     margin: 0;
     padding: 0;
   }
+
+  :root,
+  .light {
+    --secondary: 255 255 255; /* white */
+    --whitesmoke: 247 247 247;
+
+    --text-primary: 82 82 82; /* bg-stone-600 */
+
+    --border-primary: 87 83 78; /*  */
+    --border-secondary: 209 213 219;
+
+    --bg-primary: 247 247 247;
+    --bg-secondary: 255 255 255;
+
+    --hover-bg-default: 229 229 229;
+
+
+  }
+
+  .dark {
+    --secondary: 41 37 36;
+    --whitesmoke: 247 247 247;
+
+    --text-primary: 247 247 247;
+
+    --border-primary: 247 247 247;
+    --border-secondary: 28 25 23;
+
+    --bg-primary: 12 10 9;
+    --bg-secondary: 41 37 36;
+
+    --hover-bg-default: 115 115 115;
+  }
+
+
 
 }
 

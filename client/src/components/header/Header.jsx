@@ -57,10 +57,8 @@ const Header = () => {
   return (
     <>
       <header
-        className={`z-20 top-0 sticky w-full shadow-sm ${
-          isScrolled
-            ? "shadow-md bg-white dark:bg-stone-800 dark:shadow-stone-600"
-            : ""
+        className={`z-20 top-0 sticky w-full border-borderSecondary ${
+          isScrolled ? "bg-secondary dark:bg-secondary shadow" : "shadow-sm"
         }`}
       >
         <Container className="my-0 mt-0 pt-4 md:pt-8 pb-2 md:pb-3">
@@ -120,7 +118,7 @@ const Header = () => {
                   toggleTheme={toggleTheme}
                   onClick={() => dispatch(toggleTheme())}
                   label=""
-                  className="gap-0 text-lg border-none bg-transparent hover:bg-neutral-200 dark:hover:bg-neutral-500"
+                  className="gap-0 text-lg border-none bg-transparent"
                   icon={
                     theme === "light" ? <BsFillMoonStarsFill /> : <PiSunFill />
                   }
@@ -128,13 +126,13 @@ const Header = () => {
                 <NavLink to="/about">
                   <Button
                     label="About"
-                    className={`border-2 bg-transparent border-none hover:bg-neutral-300`}
+                    className="border-2 bg-transparent border-none"
                   />
                 </NavLink>
                 <NavLink to="/projects">
                   <Button
                     label="Projects"
-                    className="border-2 bg-transparent border-none hover:bg-neutral-300"
+                    className="border-2 bg-transparent border-none"
                   />
                 </NavLink>
                 {currentUser ? (
