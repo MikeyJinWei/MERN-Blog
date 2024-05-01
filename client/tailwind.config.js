@@ -25,8 +25,7 @@ export default {
         btnPrimary: "rgb(var(--btn-primary))",
         btnPrimaryText: "rgb(var(--btn-primary-text))",
         btnDefaultHover: "rgb(var(--btn-default-hover))",
-        btnGhost: "rgb(var(--btn-primary))",
-        btnGhostText: "rgb(var(--btn-primary-text))",
+        btnDefaultActive: "rgb(var(--btn-default-active))",
 
         shadowPrimary: "rgb(var(--shadow-primary))",
       },
