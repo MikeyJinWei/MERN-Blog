@@ -62,7 +62,7 @@ const Footer = () => {
                 >
                   <Button
                     icon={<FaGithub />}
-                    className="py-0 px-0 xl:py-0 xl:px-0 hover:bg-transparent hover:opacity-100 border-none"
+                    className="py-0 px-0 xl:py-0 xl:px-0 hover:bg-transparent hover:text-neutral-400 hover:opacity-100 border-none"
                   />
                 </Link>
               </li>
@@ -76,7 +76,7 @@ const Footer = () => {
                 >
                   <Button
                     icon={<FaFacebook />}
-                    className="py-0 px-0 xl:py-0 xl:px-0 hover:text-blue-700 hover:bg-transparent hover:opacity-100 border-none"
+                    className="py-0 px-0 xl:py-0 xl:px-0 hover:text-blue-600 hover:bg-transparent hover:opacity-100 border-none"
                   />
                 </Link>
               </li>
@@ -104,7 +104,7 @@ const Footer = () => {
                 >
                   <Button
                     icon={<FaBehanceSquare />}
-                    className="py-0 px-0 xl:py-0 xl:px-0 hover:text-blue-600 bg-transparent border-none"
+                    className="py-0 px-0 xl:py-0 xl:px-0 hover:text-blue-500 hover:bg-transparent border-none"
                   />
                 </Link>
               </li>
@@ -118,7 +118,7 @@ const Footer = () => {
                 >
                   <Button
                     icon={<FaTwitter />}
-                    className="py-0 px-0 xl:py-0 xl:px-0 hover:text-sky-300 bg-transparent border-none"
+                    className="py-0 px-0 xl:py-0 xl:px-0 hover:text-sky-300 hover:bg-transparent border-none"
                   />
                 </Link>
               </li>

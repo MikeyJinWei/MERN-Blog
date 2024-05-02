@@ -57,8 +57,8 @@ const Header = () => {
   return (
     <>
       <header
-        className={`z-20 top-0 sticky w-full shadow-md shadow-shadowPrimary ${
-          isScrolled ? "bg-bgSecondary" : ""
+        className={`z-20 top-0 sticky w-full  shadow-shadowPrimary ${
+          isScrolled ? "bg-bgSecondary shadow-md" : "bg-bgPrimary shadow"
         }`}
       >
         <Container className="my-0 mt-0 pt-4 md:pt-8 pb-2 md:pb-3">

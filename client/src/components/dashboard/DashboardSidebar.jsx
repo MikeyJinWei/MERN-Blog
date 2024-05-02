@@ -3,7 +3,8 @@ import Tag from "../Tag";
 
 import { FaCircleUser } from "react-icons/fa6";
 import { IoLogOutOutline } from "react-icons/io5";
-import { useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
+import Container from "../Container";
 
 const DashboardSidebar = () => {
   // 狀態儲存目前在哪個 tab 上，方便切換畫面
@@ -25,25 +26,29 @@ const DashboardSidebar = () => {
   }, [location.search]); // effect 只在 URL 有變化時才會產生
 
   return (
-    <nav className="mt-10 xl:mt-0">
-      <ul className="sticky left-0 xl:max-w-72 flex flex-col gap-3 p-4 text-base border-[1px] xl:border-r-[1px] border-borderSecondary/40 bg-bgLightGrey">
-        <li className="w-full">
-          <Tag
-            label="Profile"
-            icon={<FaCircleUser className="text-xl" />}
-            className={`w-full justify-start border-none rounded-md ${
-              tab === "profile" && "bg-btnDefaultActive"
-            }`}
-          />
-        </li>
-        <li className="w-full">
-          <Tag
-            label="Sign out"
-            icon={<IoLogOutOutline className="text-xl" />}
-            className="w-full justify-start border-none rounded-md hover:bg-btnDefaultHover"
-          />
-        </li>
-      </ul>
+    <nav className="sticky left-0 min-w-64 md:min-h-screen flex flex-col text-base border-b-[1px] md:border-r-[1px] border-borderSecondary/40 bg-bgLightGrey">
+      <Container className="my-0 mx-0 py-2 md:py-4 px-4 md:px-6">
+        <ul className="flex flex-col gap-3 mt-4 md:mt-0">
+          <li className="w-full">
+            <Link to="/dashboard?tab=profile">
+              <Tag
+                label="Profile"
+                icon={<FaCircleUser className="text-xl" />}
+                className={`w-full justify-start border-none rounded-md ${
+                  tab === "profile" && "bg-btnDefaultActive"
+                }`}
+              />
+            </Link>
+          </li>
+          <li className="w-full">
+            <Tag
+              label="Sign out"
+              icon={<IoLogOutOutline className="text-xl" />}
+              className="w-full justify-start border-none rounded-md hover:bg-btnDefaultHover"
+            />
+          </li>
+        </ul>
+      </Container>
     </nav>
   );
 };

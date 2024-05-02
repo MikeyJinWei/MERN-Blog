@@ -23,9 +23,10 @@ const Dashboard = () => {
   }, [location.search]); // effect 只在 URL 有變化時才會產生
 
   return (
-    <div>
+    <div className="flex flex-col min-h-screen md:flex-row">
       {/* Sidebar */}
       <DashboardSidebar />
+      Dashboard
       {/* profile */}
     </div>
   );
