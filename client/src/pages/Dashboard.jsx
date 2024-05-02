@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import DashboardSidebar from "../components/dashboard/DashboardSidebar";
 import Container from "../components/Container";
+import DashboardProfile from "../components/dashboard/DashboardProfile";
 
 const Dashboard = () => {
   // 初始化 `useLocation`
@@ -26,8 +27,8 @@ const Dashboard = () => {
     <div className="flex flex-col min-h-screen md:flex-row">
       {/* Sidebar */}
       <DashboardSidebar />
-      Dashboard
       {/* profile */}
+      <DashboardProfile />
     </div>
   );
 };

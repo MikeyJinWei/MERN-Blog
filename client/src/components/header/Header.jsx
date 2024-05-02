@@ -57,8 +57,8 @@ const Header = () => {
   return (
     <>
       <header
-        className={`z-20 top-0 sticky w-full  shadow-shadowPrimary ${
-          isScrolled ? "bg-bgSecondary shadow-md" : "bg-bgPrimary shadow"
+        className={`z-20 top-0 sticky w-full shadow-shadowPrimary ${
+          isScrolled ? "bg-bgSecondary shadow" : "bg-bgPrimary shadow-sm"
         }`}
       >
         <Container className="my-0 mt-0 pt-4 md:pt-8 pb-2 md:pb-3">
@@ -118,7 +118,7 @@ const Header = () => {
                   toggleTheme={toggleTheme}
                   onClick={() => dispatch(toggleTheme())}
                   label=""
-                  className="gap-0 text-lg border-none bg-transparent"
+                  className="gap-0 text-lg border-none bg-transparent hover:bg-btnDefault"
                   icon={
                     theme === "light" ? <BsFillMoonStarsFill /> : <PiSunFill />
                   }
@@ -126,13 +126,13 @@ const Header = () => {
                 <NavLink to="/about">
                   <Button
                     label="About"
-                    className="border-2 bg-transparent border-none"
+                    className="border-2 bg-transparent hover:bg-btnDefault border-none"
                   />
                 </NavLink>
                 <NavLink to="/projects">
                   <Button
                     label="Projects"
-                    className="border-2 bg-transparent border-none"
+                    className="border-2 bg-transparent hover:bg-btnDefault border-none"
                   />
                 </NavLink>
                 {currentUser ? (
@@ -140,7 +140,10 @@ const Header = () => {
                     className="relative cursor-pointer"
                     onClick={handleCollapsed}
                   >
-                    <Avatar imgSrc={currentUser.profilePicture} />
+                    <Avatar
+                      imgSrc={currentUser.profilePicture}
+                      className="w-10 h-10 border-0"
+                    />
                     <div className={`${isCollapsed ? "block" : "hidden"}`}>
                       <ProfileDropdown
                         username={currentUser.username}
@@ -185,7 +188,10 @@ const Header = () => {
                     className="relative cursor-pointer"
                     onClick={handleDropdown}
                   >
-                    <Avatar imgSrc={currentUser.profilePicture} />
+                    <Avatar
+                      imgSrc={currentUser.profilePicture}
+                      className="w-12 h-12 border-0"
+                    />
                     <div className={`${dropdown ? "block" : "hidden"}`}>
                       <ProfileDropdown
                         username={currentUser.username}

@@ -26,7 +26,7 @@ const DashboardSidebar = () => {
   }, [location.search]); // effect 只在 URL 有變化時才會產生
 
   return (
-    <nav className="sticky left-0 min-w-64 md:min-h-screen flex flex-col text-base border-b-[1px] md:border-r-[1px] border-borderSecondary/40 bg-bgLightGrey">
+    <nav className="sticky left-0 min-w-64 md:min-h-screen flex flex-col text-base border-b-[1px] md:border-b-0 md:border-r-[1px] border-borderSecondary/40 bg-bgLightGrey">
       <Container className="my-0 mx-0 py-2 md:py-4 px-4 md:px-6">
         <ul className="flex flex-col gap-3 mt-4 md:mt-0">
           <li className="w-full">
@@ -44,7 +44,7 @@ const DashboardSidebar = () => {
             <Tag
               label="Sign out"
               icon={<IoLogOutOutline className="text-xl" />}
-              className="w-full justify-start border-none rounded-md hover:bg-btnDefaultHover"
+              className="w-full justify-start border-none rounded-md hover:bg-btnDefault"
             />
           </li>
         </ul>

@@ -3,12 +3,11 @@ import Button from "./Button";
 import { Link } from "react-router-dom";
 import {
   FaGithub,
-  FaDribbble,
   FaFacebook,
   FaTwitter,
   FaBehanceSquare,
 } from "react-icons/fa";
-import { TbBrandDribbbleFilled } from "react-icons/tb";
+import { FiDribbble } from "react-icons/fi";
 
 const Footer = () => {
   return (
@@ -89,7 +88,7 @@ const Footer = () => {
                   rel="noopener noreferrer"
                 >
                   <Button
-                    icon={<TbBrandDribbbleFilled />}
+                    icon={<FiDribbble />}
                     className="py-0 px-0 xl:py-0 xl:px-0 hover:text-pink-400 hover:bg-transparent border-none"
                   />
                 </Link>

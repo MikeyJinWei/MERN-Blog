@@ -1,11 +1,16 @@
-import React from "react";
+import { twMerge } from "tailwind-merge";
 
-const Avatar = ({ imgSrc, username }) => {
+const Avatar = ({ imgSrc, className }) => {
   return (
     <>
-      <div className="w-9 h-9 md:w-10 md:h-10 flex flex-row items-center justify-center overflow-hidden rounded-full">
-        <img src={imgSrc} alt="user" />
-      </div>
+      <img
+        className={twMerge(
+          `w-full h-full object-cover rounded-full border-4 border-borderSecondary overflow-hidden`,
+          className
+        )}
+        src={imgSrc}
+        alt="user"
+      />
     </>
   );
 };

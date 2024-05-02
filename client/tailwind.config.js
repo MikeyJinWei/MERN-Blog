@@ -14,18 +14,20 @@ export default {
 
         textPrimary: "rgb(var(--text-primary))",
         textLight: "rgb(var(--text-light))",
+        btnPrimaryText: "rgb(var(--btn-primary-text))",
 
         bgPrimary: "rgb(var(--bg-primary))",
         bgSecondary: "rgb(var(--bg-secondary))",
         bgLightGrey: "rgb(var(--bg-light-grey))",
+        btnDefault: "rgb(var(--btn-default))",
+        btnPrimary: "rgb(var(--btn-primary))",
+        btnDefaultActive: "rgb(var(--btn-default-active))",
+        btnWarning: "rgb(var(--btn-warning))",
 
         borderPrimary: "rgb(var(--border-primary))",
         borderSecondary: "rgb(var(--border-secondary))",
 
-        btnPrimary: "rgb(var(--btn-primary))",
-        btnPrimaryText: "rgb(var(--btn-primary-text))",
-        btnDefaultHover: "rgb(var(--btn-default-hover))",
-        btnDefaultActive: "rgb(var(--btn-default-active))",
+        inputPrimaryBorder: "rgb(var(--input-primary-border))",
 
         shadowPrimary: "rgb(var(--shadow-primary))",
       },
