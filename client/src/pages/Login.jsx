@@ -129,7 +129,6 @@ const Login = () => {
                     id="password"
                     type={visible ? "text" : "password"}
                     placeholder="Your password......"
-                    className="text-stone-600"
                   />
                   <span
                     className="flex justify-around text-primary"

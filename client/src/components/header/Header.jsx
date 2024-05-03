@@ -58,7 +58,7 @@ const Header = () => {
     <>
       <header
         className={`z-20 top-0 sticky w-full shadow-shadowPrimary ${
-          isScrolled ? "bg-bgSecondary shadow" : "bg-bgPrimary shadow-sm"
+          isScrolled ? "bg-paper shadow" : "bg-whitesmoke shadow-sm"
         }`}
       >
         <Container className="my-0 mt-0 pt-4 md:pt-8 pb-2 md:pb-3">
@@ -118,52 +118,55 @@ const Header = () => {
                   toggleTheme={toggleTheme}
                   onClick={() => dispatch(toggleTheme())}
                   label=""
-                  className="gap-0 text-lg border-none bg-transparent hover:bg-btnDefault"
+                  className="gap-0 text-lg border-none"
                   icon={
                     theme === "light" ? <BsFillMoonStarsFill /> : <PiSunFill />
                   }
                 />
                 <NavLink to="/about">
-                  <Button
-                    label="About"
-                    className="border-2 bg-transparent hover:bg-btnDefault border-none"
-                  />
+                  <Button label="About" className="border-2 border-none" />
                 </NavLink>
                 <NavLink to="/projects">
-                  <Button
-                    label="Projects"
-                    className="border-2 bg-transparent hover:bg-btnDefault border-none"
-                  />
+                  <Button label="Projects" className="border-2 border-none" />
                 </NavLink>
                 {currentUser ? (
-                  <div
-                    className="relative cursor-pointer"
-                    onClick={handleCollapsed}
-                  >
-                    <Avatar
-                      imgSrc={currentUser.profilePicture}
-                      className="w-10 h-10 border-0"
-                    />
-                    <div className={`${isCollapsed ? "block" : "hidden"}`}>
-                      <ProfileDropdown
-                        username={currentUser.username}
-                        email={currentUser.email}
+                  <>
+                    <div
+                      className="relative cursor-pointer"
+                      onClick={handleCollapsed}
+                    >
+                      <Avatar
+                        imgSrc={currentUser.profilePicture}
+                        className="w-10 h-10 border-0"
                       />
+                      <div className={`${isCollapsed ? "block" : "hidden"}`}>
+                        <ProfileDropdown
+                          username={currentUser.username}
+                          email={currentUser.email}
+                        />
+                      </div>
                     </div>
-                  </div>
+                    <NavLink>
+                      <Button
+                        label=""
+                        icon={<FiSearch />}
+                        className="gap-0 text-xl text-blue-500 border-none hover:bg-ghost"
+                      />
+                    </NavLink>
+                  </>
                 ) : (
                   <>
                     <NavLink to="/login">
                       <Button
                         label="Log in"
-                        className="text-white dark:text-neutral-600 border-none bg-neutral-600 dark:bg-[--whitesmoke]"
+                        className="text-whitesmoke border-none bg-primary"
                       />
                     </NavLink>
                     <NavLink>
                       <Button
                         label=""
                         icon={<FiSearch />}
-                        className="gap-0 text-xl border-none text-blue-500 dark:text-[--whitesmoke] bg-transparent hover:bg-neutral-300"
+                        className="gap-0 text-xl text-blue-500 border-none hover:bg-ghost"
                       />
                     </NavLink>
                   </>
@@ -178,7 +181,7 @@ const Header = () => {
                   toggleTheme={toggleTheme}
                   onClick={() => dispatch(toggleTheme())}
                   label=""
-                  className="gap-0 text-lg border-none bg-transparent hover:bg-stone-200 dark:hover:bg-stone-500"
+                  className="gap-0 text-lg border-none bg-transparent hover:bg-ghost"
                   icon={
                     theme === "light" ? <BsFillMoonStarsFill /> : <PiSunFill />
                   }
@@ -203,7 +206,7 @@ const Header = () => {
                   <NavLink to="/login">
                     <Button
                       label="Log in"
-                      className="text-[--whitesmoke] dark:text-neutral-600 border-none bg-neutral-600 dark:bg-[--whitesmoke]"
+                      className="text-whitesmoke border-none bg-primary"
                     />
                   </NavLink>
                 )}
@@ -211,7 +214,7 @@ const Header = () => {
                 {/* Mobile Menu Toggle */}
                 <button
                   onClick={handleCollapsed}
-                  className="flex justify-center items-center gap-2 py-1 xl:py-2 px-1 xl:px-6 text-3xl border-none rounded-md bg-none hover:bg-neutral-300 hover:opacity-8 transition-all duration-300 ease-in-out"
+                  className="flex justify-center items-center gap-2 py-1 xl:py-2 px-1 xl:px-6 text-3xl border-none rounded-md hover:bg-ghost hover:opacity-8 transition-all duration-300 ease-in-out"
                 >
                   {isCollapsed ? <IoClose /> : <CgMenuRightAlt />}
                 </button>
@@ -242,7 +245,7 @@ const Header = () => {
                     <Button
                       label=""
                       icon={<FiSearch />}
-                      className="p-2 text-xl text-blue-500 dark:text-[--whitesmoke] border-none bg-transparent"
+                      className="p-2 text-xl text-blue-500 border-none bg-transparent"
                     />
                   </NavLink>
                 </div>

@@ -126,7 +126,7 @@ const Footer = () => {
 
           {/* copyright */}
           <div className="col-span-3 text-center">
-            <hr className="my-4 dark:border-stone-600" />
+            <hr className="my-4 border-borderSecondary" />
             <Link to="/">
               <span>© {new Date().getFullYear()} Elements </span>
             </Link>

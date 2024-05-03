@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const ProfileDropdown = ({ username, email }) => {
   return (
-    <ul className="absolute top-full right-0 mt-2 p-4 flex flex-col gap-4 border-[1px] border-borderSecondary rounded bg-bgSecondary shadow">
+    <ul className="absolute top-full right-0 mt-2 p-4 flex flex-col gap-4 border-[1px] border-borderSecondary rounded bg-paper shadow">
       <div className="w-full pb-4 border-b-[1px] cursor-default">
         <div>{username}</div>
         <div className="font-medium truncate">{email}</div>

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Container from "../Container";
 import Avatar from "../Avatar";
 import Input from "../Input";
@@ -11,12 +11,13 @@ const DashboardProfile = () => {
 
   return (
     <Container>
-      <form className="w-80 md:w-96 flex flex-col items-center gap-5">
+      <form className="w-72 md:w-96 flex flex-col items-center gap-5">
         {/* Heading */}
         <h1 className="text-center text-2xl font-semibold">Profile</h1>
 
         {/* Avatar */}
         <div className="w-32 h-32 cursor-pointer">
+          <input type="file" accept="image/*" />
           <Avatar
             imgSrc={currentUser.profilePicture}
             className=" shadow-md overflow-hidden"
@@ -59,15 +60,15 @@ const DashboardProfile = () => {
         <Button
           type="submit"
           label="Update"
-          className="w-full hover:text-btnPrimaryText border-2 border-btnPrimary bg-transparent hover:bg-btnPrimary"
+          className="w-full hover:text-whitesmoke border-2 border-primary hover:bg-primary"
         />
 
         <div className="w-full flex justify-between">
           <Button
             label="Delete Account"
-            className="text-btnWarning border border-btnWarning hover:bg-btnWarning hover:text-btnPrimaryText"
+            className="text-warning border border-warning hover:bg-warning hover:text-white"
           />
-          <Button label="Sign Out" className="bg-btnDefault" />
+          <Button label="Sign Out" className="border border-primary" />
         </div>
       </form>
     </Container>

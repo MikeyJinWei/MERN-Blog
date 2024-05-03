@@ -8,7 +8,7 @@ const Button = ({ onClick, type, disabled, icon, label, className }) => {
       disabled={disabled}
       type={type}
       className={twMerge(
-        `flex justify-center items-center gap-2 py-2 px-4 xl:py-3 xl:px-6 rounded-md hover:opacity-90 hover:bg-btnDefaultHover transition-all duration-300 ease-in-out`,
+        `flex justify-center items-center gap-2 py-2 px-4 xl:py-3 xl:px-6 rounded-md hover:opacity-90 hover:bg-ghost transition-all duration-300 ease-in-out`,
         className
       )}
     >
