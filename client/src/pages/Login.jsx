@@ -17,6 +17,7 @@ import {
 } from "../redux/user/userSlice";
 import OAuth from "../components/OAuth";
 import Input from "../components/Input";
+import Alert from "../components/Alert";
 
 const Login = () => {
   const [formData, setFormData] = useState({});
@@ -167,11 +168,7 @@ const Login = () => {
               />
 
               {/* Alert/Modal */}
-              {errMsg && (
-                <div className="max-w-xl p-3 rounded-lg text-red-600 bg-red-100">
-                  {errMsg}
-                </div>
-              )}
+              {errMsg && <Alert msg={errMsg} />}
 
               <hr />
 

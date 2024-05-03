@@ -5,7 +5,7 @@ const Avatar = ({ imgSrc, className }) => {
     <>
       <img
         className={twMerge(
-          `w-full h-full object-cover rounded-full border-4 border-borderSecondary overflow-hidden`,
+          `w-full h-full object-cover rounded-full overflow-hidden`,
           className
         )}
         src={imgSrc}

@@ -193,7 +193,7 @@ const Header = () => {
                   >
                     <Avatar
                       imgSrc={currentUser.profilePicture}
-                      className="w-12 h-12 border-0"
+                      className="w-10 h-10 border-0"
                     />
                     <div className={`${dropdown ? "block" : "hidden"}`}>
                       <ProfileDropdown

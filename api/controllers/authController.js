@@ -114,7 +114,7 @@ const googleAuth = async (req, res, next) => {
       const hashedPassword = bcrypt.hashSync(generatedPassword, 10); // 使用 bcrypt 將密碼加密
 
       const newUser = new User({
-        // `split()` method 傳入 `' '` 以空白為基準區隔將姓名分組成 `array` e.g. `'john doe'` => `['john', 'doe']`
+        // `split()` method 傳入 `' '` 以空白為區隔基準，將姓名分組成 `array` e.g. `'john doe'` => `['john', 'doe']`
         // `join()` method 將 `array` 所有元素合併成 `string`, e.g. ``['john', 'doe']` => `'johndoe'
         // 在 `toString()` method 傳入 9 => 生成 9 位數
         username:
