@@ -118,16 +118,22 @@ const Header = () => {
                   toggleTheme={toggleTheme}
                   onClick={() => dispatch(toggleTheme())}
                   label=""
-                  className="gap-0 text-lg border-none"
+                  className="gap-0 text-lg border-none hover:bg-ghost"
                   icon={
                     theme === "light" ? <BsFillMoonStarsFill /> : <PiSunFill />
                   }
                 />
                 <NavLink to="/about">
-                  <Button label="About" className="border-2 border-none" />
+                  <Button
+                    label="About"
+                    className="border-2 border-none hover:text-indigo-500"
+                  />
                 </NavLink>
                 <NavLink to="/projects">
-                  <Button label="Projects" className="border-2 border-none" />
+                  <Button
+                    label="Projects"
+                    className="border-2 border-none hover:text-indigo-500"
+                  />
                 </NavLink>
                 {currentUser ? (
                   <>
@@ -150,7 +156,7 @@ const Header = () => {
                       <Button
                         label=""
                         icon={<FiSearch />}
-                        className="gap-0 text-xl text-blue-500 border-none hover:bg-ghost"
+                        className="gap-0 text-xl border-none hover:bg-ghost"
                       />
                     </NavLink>
                   </>

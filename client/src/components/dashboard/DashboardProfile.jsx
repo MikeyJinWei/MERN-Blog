@@ -4,10 +4,11 @@ import Avatar from "../Avatar";
 import Input from "../Input";
 import Label from "../Label";
 import Button from "../Button";
-import { app } from "../../firebase/firebase";
+import Alert from "../Alert";
 
 import { useSelector } from "react-redux";
 
+import { app } from "../../firebase/firebase";
 import {
   getDownloadURL,
   getStorage,
@@ -16,7 +17,8 @@ import {
 } from "firebase/storage";
 
 import { MdInsertPhoto } from "react-icons/md";
-import Alert from "../Alert";
+import { CircularProgressbar } from "react-circular-progressbar";
+import "react-circular-progressbar/dist/styles.css";
 
 const DashboardProfile = () => {
   const { currentUser } = useSelector((state) => state.user);
@@ -33,7 +35,7 @@ const DashboardProfile = () => {
   // 使用狀態儲存圖片上傳進度
   const [imgFileUploadProgress, setImgFileUploadProgress] = useState(null);
   const [imgFileUploadError, setImgFileUploadError] = useState(null);
-  console.log(imgFileUploadProgress, imgFileUploadError);
+  // console.log(imgFileUploadProgress, imgFileUploadError);
 
   // handle 照片暫存
   const handleImgChange = (e) => {
@@ -76,6 +78,9 @@ const DashboardProfile = () => {
     }
     */
 
+    // 清空上次報出的錯誤
+    setImgFileUploadError(null);
+
     // 存取 firebase DB
     const storage = getStorage(app);
 
@@ -98,8 +103,12 @@ const DashboardProfile = () => {
       (error) => {
         setImgFileUploadError(
           // 不需向 Client res `error` 接收到的錯誤，告知檢查檔案大小及副檔名即可
-          "Image couldn't be uploaded (File must be image files less than 10mb)"
+          "Uploaded failed (File must be image less than 10mb)"
         );
+        // 發生錯誤時將 上傳進度/檔案緩存/URL 設為空值
+        setImgFileUploadProgress(null);
+        setImgFile(null);
+        setImgFileUrl(null);
       },
       // 確認檔案上傳至 firebase DB 後存取 URL -> 將 `imgFileUrl` state 改變
       () => {
@@ -130,20 +139,41 @@ const DashboardProfile = () => {
         <div
           // 使用 `click()` 在此 el 模擬對 `<input>` 的點擊
           onClick={() => filePickerRef.current.click()}
-          className="group w-32 h-32 border-4 border-borderSecondary rounded-full overflow-hidden cursor-pointer "
+          className={`relative group w-32 h-32 border-4 border-borderSecondary rounded-full overflow-hidden cursor-pointer transition-all duration-300 ease-in-out ${
+            imgFileUploadProgress && imgFileUploadProgress < 100 && "opacity-85"
+          }`}
         >
-          <div
-            className={`relative group-hover:opacity-85 overflow-hidden transition-all duration-300 ease-in-out`}
-          >
-            <MdInsertPhoto
-              className={`group-hover:absolute hidden group-hover:block top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-3xl text-grey
-              }`}
+          {imgFileUploadProgress && (
+            <CircularProgressbar
+              value={imgFileUploadProgress || 0}
+              text={`${imgFileUploadProgress}%`}
+              strokeWidth={5}
+              styles={{
+                root: {
+                  position: "absolute",
+                  top: 0,
+                  left: 0,
+                  width: "100%",
+                  height: "100%",
+                },
+                path: {
+                  stroke: `rgba(56, 189, 248, ${imgFileUploadProgress / 100})`,
+                },
+                text: {
+                  fill: "rgb(56 189 248)",
+                },
+              }}
             />
-            <Avatar
-              imgSrc={imgFileUrl || currentUser.profilePicture}
-              className=" shadow-md"
-            />
-          </div>
+          )}
+          <Avatar
+            imgSrc={imgFileUrl || currentUser.profilePicture}
+            className={`shadow-md group-hover:opacity-85 ${
+              imgFileUploadProgress &&
+              imgFileUploadProgress < 100 &&
+              "opacity-85"
+            }`}
+          />
+          <MdInsertPhoto className="group-hover:absolute hidden group-hover:block top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-3xl text-darkerGrey opacity-100" />
         </div>
 
         {imgFileUploadError && <Alert msg={imgFileUploadError} />}
@@ -178,6 +208,7 @@ const DashboardProfile = () => {
             type="password"
             placeholder="Password"
             defaultValue=""
+            className="placeholder:text-secondary"
           />
         </div>
 
@@ -192,7 +223,10 @@ const DashboardProfile = () => {
             label="Delete Account"
             className="text-warning border-2 border-warning hover:bg-warning hover:text-white"
           />
-          <Button label="Sign Out" className="border-2 border-primary" />
+          <Button
+            label="Sign Out"
+            className="border-2 border-primary hover:bg-primary hover:text-whitesmoke"
+          />
         </div>
       </form>
     </Container>
