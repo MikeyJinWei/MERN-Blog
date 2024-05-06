@@ -3,6 +3,7 @@ import mongoose from "mongoose";
 import dotenv from "dotenv";
 import userRoute from "./routes/userRoute.js";
 import authRoute from "./routes/authRoute.js";
+import cookieParser from "cookie-parser";
 
 dotenv.config();
 
@@ -20,6 +21,7 @@ app.use(
     extended: true,
   })
 );
+app.use(cookieParser());
 
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);

@@ -17,7 +17,7 @@ const Input = ({
       placeholder={placeholder}
       className={twMerge(
         `
-          w-full py-2 px-4 text-lg text-textPrimary placeholder:text-textLight border-2 rounded-3xl border-neutral-400 focus:border-borderPrimary outline-none ring-0 focus:outline-none focus:ring-0 bg-whitesmoke focus:shadow shadow-shadowPrimary
+          w-full py-2 px-4 text-lg text-primary placeholder:text-secondary border-2 rounded-3xl border-neutral-400 focus:border-borderPrimary outline-none ring-0 focus:outline-none focus:ring-0 bg-whitesmoke focus:shadow shadow-shadowPrimary
         `,
         className
       )}

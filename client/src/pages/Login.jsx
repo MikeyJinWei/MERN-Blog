@@ -164,7 +164,7 @@ const Login = () => {
                     "Sign In"
                   )
                 }
-                className="text-lg lg:text-xl text-btnPrimaryText border-2 border-borderPrimary bg-btnPrimary hover:bg-btnPrimary"
+                className="text-lg lg:text-xl text-whitesmoke border-2 border-borderPrimary bg-primary"
               />
 
               {/* Alert/Modal */}
