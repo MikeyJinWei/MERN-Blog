@@ -6,7 +6,12 @@ import Label from "../Label";
 import Button from "../Button";
 import Alert from "../Alert";
 
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import {
+  updateStart,
+  updateSuccess,
+  updateFailure,
+} from "../../redux/user/userSlice";
 
 import { app } from "../../firebase/firebase";
 import {
@@ -23,21 +28,27 @@ import { IoMdEye, IoMdEyeOff } from "react-icons/io";
 
 const DashboardProfile = () => {
   const [visible, setVisible] = useState(false);
-  const { currentUser } = useSelector((state) => state.user);
-
   // 使用狀態管理是否已暫存檔案
   const [imgFile, setImgFile] = useState(null);
-
   // 使用臨時 URL 渲染上傳的圖片至 `Avatar` 組件
   const [imgFileUrl, setImgFileUrl] = useState(null);
+  // 狀態管理圖片上傳
+  const [imgFileUploadProgress, setImgFileUploadProgress] = useState(null); // 進度條
+  const [imgFileUploadError, setImgFileUploadError] = useState(null); // 上傳錯誤
+  const [imgFileUploading, setImgFileUploading] = useState(false); // 給 Client 的上傳狀態
+  // 給 Client 的 `form` 的提交狀態
+  const [updateUserSuccess, setUpdateUserSuccess] = useState(null); // 成功信息
+  const [updateUserError, setUpdateUserError] = useState(null); // 錯誤信息
+
+  // 狀態儲存 `form` 資料
+  const [formData, setFormData] = useState({});
 
   // 透過 ref 綁定 DOM el 防止重渲染後就消失
   const filePickerRef = useRef();
-
-  // 使用狀態儲存圖片上傳進度
-  const [imgFileUploadProgress, setImgFileUploadProgress] = useState(null);
-  const [imgFileUploadError, setImgFileUploadError] = useState(null);
-  // console.log(imgFileUploadProgress, imgFileUploadError);
+  // 存取 Redux 的 `user` state
+  const { currentUser } = useSelector((state) => state.user);
+  // 初始化 `useDispatch()` hook
+  const dispatch = useDispatch();
 
   // handle password 開關 icon
   const handleVisible = (e) => {
@@ -53,7 +64,6 @@ const DashboardProfile = () => {
       setImgFileUrl(URL.createObjectURL(file));
     }
   };
-  // console.log(imgFile, imgFileUrl);
 
   // 使用 effect 觸發照片檔上傳的 `function`
   useEffect(() => {
@@ -84,7 +94,7 @@ const DashboardProfile = () => {
       }
     }
     */
-
+    setImgFileUploading(true); // 讓 Client 知道開始上傳照片
     // 清空上次報出的錯誤
     setImgFileUploadError(null);
 
@@ -98,7 +108,7 @@ const DashboardProfile = () => {
     // 傳入暫存的檔案指向 firebase DB
     const uploadTask = uploadBytesResumable(storageRef, imgFile);
     uploadTask.on(
-      "state_changed", //
+      "state_changed",
       // 使用 `snapshot` variable 存取上傳任務的狀態
       (snapshot) => {
         // 紀錄上傳進度
@@ -112,24 +122,76 @@ const DashboardProfile = () => {
           // 不需向 Client res `error` 接收到的錯誤，告知檢查檔案大小及副檔名即可
           "Uploaded failed (File must be image less than 10mb)"
         );
-        // 發生錯誤時將 上傳進度/檔案緩存/URL 設為空值
-        setImgFileUploadProgress(null);
-        setImgFile(null);
-        setImgFileUrl(null);
+        // 發生錯誤時
+        setImgFileUploadProgress(null); // 上傳進度設為空值
+        setImgFile(null); // 檔案緩存設為空值
+        setImgFileUrl(null); // URL設為空值
+        setImgFileUploading(false);
       },
-      // 確認檔案上傳至 firebase DB 後存取 URL -> 將 `imgFileUrl` state 改變
+      // 確認檔案已上傳至 firebase DB
       () => {
+        // 存取 URL
         getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-          setImgFileUrl(downloadURL);
+          setImgFileUrl(downloadURL); // 改變 `imgFileUrl` state
+          // 賦予新 Avatar 的 URL 給 `formData` 的 `profilePicture` key
+          setFormData({ ...formData, profilePicture: downloadURL });
+          setImgFileUploading(false);
         });
       }
     );
   };
 
+  // handle `input` 變化
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.id]: e.target.value });
+  };
+
+  // handle `form` 資料提交
+  const handleSubmit = async (e) => {
+    e.preventDefault(); // 避免提交重整
+    setUpdateUserError(null);
+    setUpdateUserSuccess(null);
+    // 排除提交空值
+    if (Object.keys(formData).length === 0) {
+      setUpdateUserError("No changes made");
+      return;
+    }
+    // 避免還在上傳照片時再次發出 Req
+    if (imgFileUploading) {
+      setUpdateUserError("Please wait before finishing image upload");
+      return;
+    }
+    try {
+      dispatch(updateStart()); // 開始更新
+      // 發出 JSON 請求 -> `res` variable 儲存自後端的 respond
+      const res = await fetch(`/api/user/update/${currentUser._id}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+      const data = await res.json(); // 將 res 轉換成 JS 儲存
+      if (!res.ok) {
+        dispatch(updateFailure(data.message)); // 存取 `res` 的錯誤信息
+        setUpdateUserError(data.message);
+      } else {
+        dispatch(updateSuccess(data)); // 賦予 `data` 給 payload
+        setUpdateUserSuccess("User's profile updated successfully"); // 告知 Client 成功信息
+      }
+    } catch (error) {
+      dispatch(updateFailure(error.message));
+      setUpdateUserError(error.message);
+    }
+  };
+
   return (
     <Container>
       <h1 className="text-center text-2xl font-semibold">Profile</h1>
-      <form className="w-72 md:w-96 flex flex-col items-center gap-5">
+      <form
+        onSubmit={handleSubmit}
+        className="w-72 md:w-96 flex flex-col items-center gap-5"
+      >
         {/* Heading */}
 
         {/* Img picker */}
@@ -146,7 +208,7 @@ const DashboardProfile = () => {
         <div
           // 使用 `click()` 在此 el 模擬對 `<input>` 的點擊
           onClick={() => filePickerRef.current.click()}
-          className={`relative group w-32 h-32 border-4 border-borderSecondary rounded-full overflow-hidden cursor-pointer transition-all duration-300 ease-in-out ${
+          className={`relative group w-32 h-32 border-4 border-borderSecondary rounded-full bg-ghost overflow-hidden cursor-pointer transition-all duration-300 ease-in-out ${
             imgFileUploadProgress && imgFileUploadProgress < 100 && "opacity-85"
           }`}
         >
@@ -180,7 +242,7 @@ const DashboardProfile = () => {
               "opacity-85"
             }`}
           />
-          <MdInsertPhoto className="group-hover:absolute hidden group-hover:block top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-3xl text-darkerGrey opacity-100" />
+          <MdInsertPhoto className="group-hover:absolute hidden group-hover:block top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-3xl text-dark opacity-100" />
         </div>
 
         {imgFileUploadError && <Alert msg={imgFileUploadError} />}
@@ -189,6 +251,7 @@ const DashboardProfile = () => {
         <div className="w-full">
           <Label content="Username" />
           <Input
+            onChange={handleChange}
             id="username"
             type="text"
             placeholder="Username"
@@ -200,6 +263,7 @@ const DashboardProfile = () => {
         <div className="w-full">
           <Label content="Email" />
           <Input
+            onChange={handleChange}
             id="email"
             type="email"
             placeholder="Username"
@@ -212,6 +276,7 @@ const DashboardProfile = () => {
           <Label content="Password" />
           <div className="flex">
             <Input
+              onChange={handleChange}
               id="password"
               type={visible ? "text" : "password"}
               placeholder="Password"
@@ -239,14 +304,21 @@ const DashboardProfile = () => {
         <div className="w-full flex justify-between">
           <Button
             label="Delete Account"
-            className="text-warning border-2 border-warning hover:bg-warning hover:text-white"
+            className="text-neutral-50 border-2 border-warning bg-warning"
           />
           <Button
             label="Sign Out"
-            className="border-2 border-primary hover:bg-primary hover:text-whitesmoke"
+            className="border-2 border-primary bg-primary text-whitesmoke"
           />
         </div>
       </form>
+      {updateUserSuccess && (
+        <Alert
+          msg={updateUserSuccess}
+          className="mt-5 text-emerald-600 bg-green-100"
+        />
+      )}
+      {updateUserError && <Alert msg={updateUserError} className="mt-5" />}
     </Container>
   );
 };

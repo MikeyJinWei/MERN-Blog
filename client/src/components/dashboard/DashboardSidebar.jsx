@@ -18,7 +18,7 @@ const DashboardSidebar = () => {
     const urlParams = new URLSearchParams(location.search);
     // 使用 `get()` method 尋找 `urlParams` 是否有 `tab` key 並存取其 value
     const tabFromUrl = urlParams.get("tab"); // `tab` key 是在用戶下拉選單設定的路由
-    console.log(tabFromUrl);
+    // console.log(tabFromUrl);
     // 判斷 `tabFromUrl 的 `truthy`/`falsy`
     if (tabFromUrl) {
       setTab(tabFromUrl); // 設定 `tab` 狀態

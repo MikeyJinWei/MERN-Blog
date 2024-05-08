@@ -20,7 +20,7 @@ const Dashboard = () => {
     if (tabFromUrl) {
       setTab(tabFromUrl); // 設定 `tab` 狀態
     }
-    console.log(tabFromUrl);
+    // console.log(tabFromUrl);
   }, [location.search]); // effect 只在 URL 有變化時才會產生
 
   return (
