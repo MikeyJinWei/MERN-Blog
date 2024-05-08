@@ -5,6 +5,7 @@ import Input from "../Input";
 import Label from "../Label";
 import Button from "../Button";
 import Alert from "../Alert";
+import { Modal } from "flowbite-react";
 
 import { useSelector, useDispatch } from "react-redux";
 import {
@@ -25,6 +26,7 @@ import { MdInsertPhoto } from "react-icons/md";
 import { CircularProgressbar } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 import { IoMdEye, IoMdEyeOff } from "react-icons/io";
+import { TbExclamationCircle } from "react-icons/tb";
 
 const DashboardProfile = () => {
   const [visible, setVisible] = useState(false);
@@ -39,9 +41,10 @@ const DashboardProfile = () => {
   // 給 Client 的 `form` 的提交狀態
   const [updateUserSuccess, setUpdateUserSuccess] = useState(null); // 成功信息
   const [updateUserError, setUpdateUserError] = useState(null); // 錯誤信息
-
   // 狀態儲存 `form` 資料
   const [formData, setFormData] = useState({});
+  // 狀態管理刪除用戶用 Modal
+  const [showModal, setShowModal] = useState(false);
 
   // 透過 ref 綁定 DOM el 防止重渲染後就消失
   const filePickerRef = useRef();
@@ -185,12 +188,15 @@ const DashboardProfile = () => {
     }
   };
 
+  // handle 刪除使用者
+  const handleDeleteUser = () => {};
+
   return (
     <Container>
-      <h1 className="text-center text-2xl font-semibold">Profile</h1>
+      <h1 className="mb-3 text-center text-2xl font-semibold">Profile</h1>
       <form
         onSubmit={handleSubmit}
-        className="w-72 md:w-96 flex flex-col items-center gap-5"
+        className="w-72 mb-5 md:w-96 flex flex-col items-center gap-5"
       >
         {/* Heading */}
 
@@ -300,18 +306,18 @@ const DashboardProfile = () => {
           label="Update"
           className="w-full hover:text-whitesmoke border-2 border-primary hover:bg-primary"
         />
-
-        <div className="w-full flex justify-between">
-          <Button
-            label="Delete Account"
-            className="text-neutral-50 border-2 border-warning bg-warning"
-          />
-          <Button
-            label="Sign Out"
-            className="border-2 border-primary bg-primary text-whitesmoke"
-          />
-        </div>
       </form>
+      <div className="w-full flex justify-between">
+        <Button
+          onClick={() => setShowModal(true)} // 開啟刪除帳號的 Modal
+          label="Delete Account"
+          className="text-neutral-50 border-2 border-warning bg-warning"
+        />
+        <Button
+          label="Sign Out"
+          className="border-2 border-primary bg-primary text-whitesmoke"
+        />
+      </div>
       {updateUserSuccess && (
         <Alert
           msg={updateUserSuccess}
@@ -319,6 +325,36 @@ const DashboardProfile = () => {
         />
       )}
       {updateUserError && <Alert msg={updateUserError} className="mt-5" />}
+
+      {/* Delete User Modal */}
+      <Modal
+        show={showModal}
+        onClose={() => setShowModal(false)}
+        size="md"
+        popup
+      >
+        <Modal.Header className="" />
+        <Modal.Body className="text-neutral-600 dark:text-neutral-50">
+          <div className="text-center">
+            <TbExclamationCircle className="w-14 h-14 mx-auto mb-5" />
+            <h3 className="mb-5 text-lg">
+              Are you sure you want to delete your account?
+            </h3>
+          </div>
+          <div className="flex justify-between">
+            <Button
+              onClick={handleDeleteUser}
+              label="Yes, I'm sure"
+              className="text-neutral-50 bg-warning"
+            />
+            <Button
+              onClick={() => {}}
+              label="No, thanks"
+              className="bg-ghost"
+            />
+          </div>
+        </Modal.Body>
+      </Modal>
     </Container>
   );
 };
