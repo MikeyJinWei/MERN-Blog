@@ -19,8 +19,10 @@ import {
 import { MdInsertPhoto } from "react-icons/md";
 import { CircularProgressbar } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
+import { IoMdEye, IoMdEyeOff } from "react-icons/io";
 
 const DashboardProfile = () => {
+  const [visible, setVisible] = useState(false);
   const { currentUser } = useSelector((state) => state.user);
 
   // 使用狀態管理是否已暫存檔案
@@ -36,6 +38,11 @@ const DashboardProfile = () => {
   const [imgFileUploadProgress, setImgFileUploadProgress] = useState(null);
   const [imgFileUploadError, setImgFileUploadError] = useState(null);
   // console.log(imgFileUploadProgress, imgFileUploadError);
+
+  // handle password 開關 icon
+  const handleVisible = (e) => {
+    setVisible(!visible);
+  };
 
   // handle 照片暫存
   const handleImgChange = (e) => {
@@ -203,13 +210,24 @@ const DashboardProfile = () => {
         {/* Password */}
         <div className="w-full">
           <Label content="Password" />
-          <Input
-            id="password"
-            type="password"
-            placeholder="Password"
-            defaultValue=""
-            className="placeholder:text-secondary"
-          />
+          <div className="flex">
+            <Input
+              id="password"
+              type={visible ? "text" : "password"}
+              placeholder="Password"
+              className="placeholder:text-secondary"
+            />
+            <span
+              className="relative flex justify-around text-2xl"
+              onClick={handleVisible}
+            >
+              {visible ? (
+                <IoMdEye className="absolute top-3 right-4 cursor-pointer" />
+              ) : (
+                <IoMdEyeOff className="absolute top-3 right-4 cursor-pointer" />
+              )}
+            </span>
+          </div>
         </div>
 
         <Button

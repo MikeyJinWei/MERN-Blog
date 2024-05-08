@@ -22,10 +22,8 @@ import Alert from "../components/Alert";
 const Login = () => {
   const [formData, setFormData] = useState({});
   const [visible, setVisible] = useState(false);
-  // const [errMsg, setErrMsg] = useState(null);
-  // const [loading, setLoading] = useState(false);
   const dispatch = useDispatch(); // 初始化 useDispatch
-  // 改將 error, loading state 從 redux 的 initialState 解構出來
+  // 將 error, loading state 從 redux 的 initialState 解構出來
   const { loading, error: errMsg } = useSelector((state) => state.user);
 
   const navigate = useNavigate(); // 初始化 useNavigate hook
@@ -132,19 +130,13 @@ const Login = () => {
                     placeholder="Your password......"
                   />
                   <span
-                    className="flex justify-around text-primary"
+                    className="relative flex justify-around text-2xl"
                     onClick={handleVisible}
                   >
                     {visible ? (
-                      <IoMdEye
-                        size={20}
-                        className="absolute mt-3.5 mr-12 cursor-pointer"
-                      />
+                      <IoMdEye className="absolute top-3 right-4 cursor-pointer" />
                     ) : (
-                      <IoMdEyeOff
-                        size={20}
-                        className="absolute mt-3.5 mr-12 cursor-pointer"
-                      />
+                      <IoMdEyeOff className="absolute top-3 right-4 cursor-pointer" />
                     )}
                   </span>
                 </div>
