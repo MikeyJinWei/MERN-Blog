@@ -104,12 +104,15 @@ const Register = () => {
           >
             {/* Username */}
             <div>
-              <Label content="Username" />
+              <Label
+                content="Username"
+                subContent="(At least 3 characters, consisting of lowercase a~z, number, or underline)"
+              />
               <Input
                 onChange={handleChange}
                 type="text"
                 id="username"
-                placeholder="Enter Your name..."
+                placeholder="Enter your name..."
               />
             </div>
 
@@ -126,7 +129,7 @@ const Register = () => {
 
             {/* Password */}
             <div>
-              <Label content="Password" />
+              <Label content="Password" subContent="(At least 6 characters)" />
               <div className="flex">
                 <Input
                   onChange={handleChange}
