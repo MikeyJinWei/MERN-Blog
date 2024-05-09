@@ -83,3 +83,15 @@ export const deleteUser = async (req, res, next) => {
     next(error);
   }
 };
+
+// 登出使用者
+export const logOutUser = (req, res, next) => {
+  try {
+    res
+      .clearCookie("access_token") // 清空 login 時建立的 cookie
+      .status(200)
+      .json("User has been signed out");
+  } catch (error) {
+    next(error);
+  }
+};

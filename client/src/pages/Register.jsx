@@ -88,7 +88,7 @@ const Register = () => {
   return (
     <Container>
       <div className="w-full">
-        <div className="max-w-3xl flex flex-col gap-6 mx-auto p-4 md:p-8 rounded-lg shadow-lg bg-white">
+        <div className="max-w-3xl flex flex-col gap-6 mx-auto p-4 md:p-8 border rounded-lg border-borderSecondary shadow-lg shadow-shadowPrimary">
           {/* Heading */}
           <div className="flex flex-col mx-auto text-center gap-3">
             <div>
@@ -106,7 +106,7 @@ const Register = () => {
             <div>
               <Label
                 content="Username"
-                subContent="(At least 3 characters, consisting of lowercase a~z, number, or underline)"
+                subContent="(At least 3 characters, lowercase a~z, number, or underline)"
               />
               <Input
                 onChange={handleChange}
@@ -137,17 +137,14 @@ const Register = () => {
                   id="password"
                   placeholder="Enter Your password..."
                 />
-                <span className="flex justify-around" onClick={handleVisible}>
+                <span
+                  className="relative flex justify-around text-2xl"
+                  onClick={handleVisible}
+                >
                   {visible ? (
-                    <IoMdEye
-                      size={20}
-                      className="absolute mt-3.5 mr-12 cursor-pointer"
-                    />
+                    <IoMdEye className="absolute top-3 right-4 cursor-pointer" />
                   ) : (
-                    <IoMdEyeOff
-                      size={20}
-                      className="absolute mt-3.5 mr-12 cursor-pointer"
-                    />
+                    <IoMdEyeOff className="absolute top-3 right-4 cursor-pointer" />
                   )}
                 </span>
               </div>
@@ -167,7 +164,7 @@ const Register = () => {
                   "Sign Up"
                 )
               }
-              className="text-lg lg:text-xl text-[--whitesmoke] border-neutral-600 bg-neutral-600"
+              className="text-lg lg:text-xl text-whitesmoke border-2 border-borderPrimary bg-primary"
             />
             {/* Alert/Modal */}
             {errMsg && (
@@ -179,7 +176,7 @@ const Register = () => {
             <hr />
 
             {/* Google Auth */}
-            <h4 className=" text-center font-medium">
+            <h4 className=" text-center text-lg">
               Or sign up with Google account
             </h4>
             <OAuth />

@@ -165,7 +165,9 @@ const Login = () => {
               <hr />
 
               {/* Google Auth */}
-              <h4 className=" text-center">Or sign in with Google account</h4>
+              <h4 className="text-center text-lg">
+                Or sign in with Google account
+              </h4>
               <OAuth />
             </form>
             <div className="w-full flex gap-2 justify-center">

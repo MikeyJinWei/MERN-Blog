@@ -15,6 +15,7 @@ import {
   deleteUserStart,
   deleteUserSuccess,
   deleteUserFailure,
+  logOutSuccess,
 } from "../../redux/user/userSlice";
 
 import { app } from "../../firebase/firebase";
@@ -188,7 +189,7 @@ const DashboardProfile = () => {
     }
   };
 
-  // handle 刪除使用者
+  // handle 刪除使用者 req
   const handleDeleteUser = async () => {
     setShowModal(false); // 先將 Modal 關閉
 
@@ -205,6 +206,25 @@ const DashboardProfile = () => {
       }
     } catch (error) {
       dispatch(deleteUserFailure(error.message));
+    }
+  };
+
+  // handle 登出 req
+  const handleLogOut = async () => {
+    try {
+      // 發出 Req -> 儲存來自後端的 Res
+      const res = await fetch("api/user/logout", {
+        method: "POST",
+        // 不需傳送任何表頭/內文
+      });
+      const data = res.json(); // 轉換成 JS
+      if (!res.ok) {
+        console.log(data.message);
+      } else {
+        dispatch(logOutSuccess());
+      }
+    } catch (error) {
+      console.log(error.message);
     }
   };
 
@@ -331,6 +351,7 @@ const DashboardProfile = () => {
           className="text-neutral-50 border-2 border-warning bg-warning"
         />
         <Button
+          onClick={handleLogOut}
           label="Sign Out"
           className="border-2 border-primary bg-primary text-whitesmoke"
         />

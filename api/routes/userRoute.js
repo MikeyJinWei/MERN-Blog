@@ -1,5 +1,10 @@
 import express from "express";
-import { deleteUser, test, updateUser } from "../controllers/userController.js";
+import {
+  deleteUser,
+  logOutUser,
+  test,
+  updateUser,
+} from "../controllers/userController.js";
 import { verifyToken } from "../utils/verifyUser.js";
 
 const router = express.Router();
@@ -10,5 +15,7 @@ router.get("/test", test);
 router.put("/update/:userId", verifyToken, updateUser);
 // 刪除使用者路由
 router.delete("/delete/:userId", verifyToken, deleteUser);
+// 登出使用者路由
+router.post("/logout", logOutUser);
 
 export default router;
