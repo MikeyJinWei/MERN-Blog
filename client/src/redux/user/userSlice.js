@@ -10,18 +10,18 @@ const userSlice = createSlice({
   name: "user",
   initialState,
   reducers: {
-    // start login logic / pending
+    // 開始登入
     loginStart: (state) => {
       state.loading = true; // set loading state to true
       state.error = null; // clear all prev error
     },
-    // login successful
+    // 登入成功
     loginSuccess: (state, action) => {
       state.currentUser = action.payload;
       state.loading = false;
       state.error = null;
     },
-    // login failed
+    // 登入失敗
     loginFailure: (state, action) => {
       state.loading = false;
       state.error = action.payload;
@@ -42,6 +42,22 @@ const userSlice = createSlice({
       state.loading = false;
       state.error = action.payload;
     },
+    // 開始刪除使用者
+    deleteUserStart: (state) => {
+      state.loading = false;
+      state.error = null;
+    },
+    // 刪除使用者成功
+    deleteUserSuccess: (state) => {
+      state.currentUser = null;
+      state.loading = false;
+      state.error = null;
+    },
+    // 刪除使用者失敗
+    deleteUserFailure: (state, action) => {
+      state.loading = false;
+      state.error = action.payload;
+    },
   },
 });
 
@@ -52,6 +68,9 @@ export const {
   updateStart,
   updateSuccess,
   updateFailure,
+  deleteUserStart,
+  deleteUserSuccess,
+  deleteUserFailure,
 } = userSlice.actions;
 
 export default userSlice.reducer;

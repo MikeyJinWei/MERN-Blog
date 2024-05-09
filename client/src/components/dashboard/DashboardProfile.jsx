@@ -12,6 +12,9 @@ import {
   updateStart,
   updateSuccess,
   updateFailure,
+  deleteUserStart,
+  deleteUserSuccess,
+  deleteUserFailure,
 } from "../../redux/user/userSlice";
 
 import { app } from "../../firebase/firebase";
@@ -49,7 +52,7 @@ const DashboardProfile = () => {
   // 透過 ref 綁定 DOM el 防止重渲染後就消失
   const filePickerRef = useRef();
   // 存取 Redux 的 `user` state
-  const { currentUser } = useSelector((state) => state.user);
+  const { currentUser, error } = useSelector((state) => state.user);
   // 初始化 `useDispatch()` hook
   const dispatch = useDispatch();
 
@@ -78,7 +81,6 @@ const DashboardProfile = () => {
 
   // 實際上傳照片檔的 `function`
   const uploadImg = async () => {
-    // console.log("Uploading img...");
     /* 
     rules_version = '2';
 
@@ -100,10 +102,8 @@ const DashboardProfile = () => {
     setImgFileUploading(true); // 讓 Client 知道開始上傳照片
     // 清空上次報出的錯誤
     setImgFileUploadError(null);
-
     // 存取 firebase DB
     const storage = getStorage(app);
-
     // 為即將上傳的檔案命名
     const fileName = new Date().getTime() + imgFile.name;
     // 持久化存取到的 firebase DB 並同時賦予檔案名稱
@@ -189,7 +189,24 @@ const DashboardProfile = () => {
   };
 
   // handle 刪除使用者
-  const handleDeleteUser = () => {};
+  const handleDeleteUser = async () => {
+    setShowModal(false); // 先將 Modal 關閉
+
+    try {
+      dispatch(deleteUserStart()); // 開始刪除
+      const res = await fetch(`/api/user/delete/${currentUser._id}`, {
+        method: "DELETE",
+      });
+      const data = await res.json();
+      if (!res.ok) {
+        dispatch(deleteUserFailure(data.message));
+      } else {
+        dispatch(deleteUserSuccess(data));
+      }
+    } catch (error) {
+      dispatch(deleteUserFailure(error.message));
+    }
+  };
 
   return (
     <Container>
@@ -318,6 +335,7 @@ const DashboardProfile = () => {
           className="border-2 border-primary bg-primary text-whitesmoke"
         />
       </div>
+      {/* Update UI */}
       {updateUserSuccess && (
         <Alert
           msg={updateUserSuccess}
@@ -325,6 +343,8 @@ const DashboardProfile = () => {
         />
       )}
       {updateUserError && <Alert msg={updateUserError} className="mt-5" />}
+      {/* Delete User UI */}
+      {error && <Alert msg={error} className="mt-5" />}
 
       {/* Delete User Modal */}
       <Modal
@@ -333,8 +353,8 @@ const DashboardProfile = () => {
         size="md"
         popup
       >
-        <Modal.Header className="" />
-        <Modal.Body className="text-neutral-600 dark:text-neutral-50">
+        <Modal.Header />
+        <Modal.Body className="text-primary">
           <div className="text-center">
             <TbExclamationCircle className="w-14 h-14 mx-auto mb-5" />
             <h3 className="mb-5 text-lg">
@@ -348,8 +368,8 @@ const DashboardProfile = () => {
               className="text-neutral-50 bg-warning"
             />
             <Button
-              onClick={() => {}}
-              label="No, thanks"
+              onClick={() => setShowModal(false)}
+              label="No, cancel"
               className="bg-ghost"
             />
           </div>

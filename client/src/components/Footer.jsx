@@ -6,8 +6,8 @@ import {
   FaFacebook,
   FaTwitter,
   FaBehanceSquare,
+  FaDribbbleSquare,
 } from "react-icons/fa";
-import { FiDribbble } from "react-icons/fi";
 
 const Footer = () => {
   return (
@@ -88,7 +88,7 @@ const Footer = () => {
                   rel="noopener noreferrer"
                 >
                   <Button
-                    icon={<FiDribbble />}
+                    icon={<FaDribbbleSquare />}
                     className="py-0 px-0 xl:py-0 xl:px-0 hover:text-pink-400 hover:bg-transparent border-none"
                   />
                 </Link>
