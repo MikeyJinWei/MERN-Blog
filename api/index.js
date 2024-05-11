@@ -4,6 +4,7 @@ import dotenv from "dotenv";
 import userRoute from "./routes/userRoute.js";
 import authRoute from "./routes/authRoute.js";
 import cookieParser from "cookie-parser";
+import path from "path";
 
 dotenv.config();
 
@@ -12,6 +13,7 @@ mongoose
   .then(() => console.log("MongoDB is connected"))
   .catch((err) => console.log(err));
 
+const __dirname = path.resolve(); // 取得動態路徑
 const port = process.env.PORT;
 const app = express();
 
@@ -31,12 +33,16 @@ app.listen(port, () => {
 app.get("/", (req, res) => {
   res.json({ message: "Server is running!" });
 });
-
-// activate user route
+// 啟用 user route
 app.use("/api/user", userRoute);
-
-// activate auth route
+// 啟用 auth route
 app.use("/api/auth", authRoute);
+
+// 啟用 Client 路徑
+app.use(express.static(path.join(__dirname, "/client/dist")));
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "client", "dist", "index.html"));
+});
 
 // activate error handler middleware
 app.use((err, req, res, next) => {
