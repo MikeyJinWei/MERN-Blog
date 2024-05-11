@@ -41,7 +41,7 @@ app.use("/api/auth", authRoute);
 // 啟用 Client 路徑
 app.use(express.static(path.join(__dirname, "/client/dist")));
 app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "client", "dist", "index.html"));
+  res.sendFile(path.join(__dirname, "client/dist/index.html"));
 });
 
 // activate error handler middleware
