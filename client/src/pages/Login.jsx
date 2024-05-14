@@ -57,7 +57,7 @@ const Login = () => {
 
       dispatch(loginStart()); // fetch() 結束前同時將 loading state 開啟、清空 errMsg state 紀錄
 
-      const res = await fetch("/api/api/auth/login", {
+      const res = await fetch("/api/auth/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
