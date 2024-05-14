@@ -10,10 +10,13 @@ const ProfileDropdown = ({ username, email }) => {
   const handleLogOut = async () => {
     try {
       // 發出 Req -> 儲存來自後端的 Res
-      const res = await fetch("api/user/logout", {
-        method: "POST",
-        // 不需傳送任何表頭/內文
-      });
+      const res = await fetch(
+        `${import.meta.VITE_BACKEND_BASEURL}/api/user/logout`,
+        {
+          method: "POST",
+          // 不需傳送任何表頭/內文
+        }
+      );
       const data = res.json(); // 轉換成 JS
       if (!res.ok) {
         console.log(data.message);

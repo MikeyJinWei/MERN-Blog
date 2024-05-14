@@ -168,13 +168,18 @@ const DashboardProfile = () => {
     try {
       dispatch(updateStart()); // 開始更新
       // 發出 JSON 請求 -> `res` variable 儲存自後端的 respond
-      const res = await fetch(`/api/user/update/${currentUser._id}`, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
+      const res = await fetch(
+        `${import.meta.VITE_BACKEND_BASEURL}/api/user/update/${
+          currentUser._id
+        }`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData),
+        }
+      );
       const data = await res.json(); // 將 res 轉換成 JS 儲存
       if (!res.ok) {
         dispatch(updateFailure(data.message)); // 存取 `res` 的錯誤信息

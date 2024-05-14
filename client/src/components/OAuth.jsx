@@ -33,16 +33,19 @@ const OAuth = ({ onClick }) => {
       console.log(resultsFromGoogle); // 輸出到 console 查看
 
       // `res` variable 儲存向後端發出的 POST
-      const res = await fetch("/api/auth/google", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        // 內文只存取特定資料 POST
-        body: JSON.stringify({
-          name: resultsFromGoogle.user.displayName,
-          email: resultsFromGoogle.user.email,
-          googlePhotoUrl: resultsFromGoogle.user.photoURL,
-        }),
-      });
+      const res = await fetch(
+        `${import.meta.VITE_BACKEND_BASEURL}/api/auth/google`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          // 內文只存取特定資料 POST
+          body: JSON.stringify({
+            name: resultsFromGoogle.user.displayName,
+            email: resultsFromGoogle.user.email,
+            googlePhotoUrl: resultsFromGoogle.user.photoURL,
+          }),
+        }
+      );
 
       // 將 `res` 轉換成 JSON 以 `data` variable 儲存
       const data = await res.json();

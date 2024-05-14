@@ -57,13 +57,16 @@ const Login = () => {
 
       dispatch(loginStart()); // fetch() 結束前同時將 loading state 開啟、清空 errMsg state 紀錄
 
-      const res = await fetch("/api/auth/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
+      const res = await fetch(
+        `${import.meta.VITE_BACKEND_BASEURL}/api/auth/login`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData),
+        }
+      );
 
       const data = await res.json();
 
