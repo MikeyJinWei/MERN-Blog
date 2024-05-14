@@ -5,8 +5,9 @@ import react from "@vitejs/plugin-react-swc";
 export default defineConfig({
   server: {
     proxy: {
-      "/api/": {
-        target: "https://mern-blog-hdz7.onrender.com",
+      "/server": {
+        target: "https://mern-blog-hdz7.onrender.com/",
+        changeOrigin: true,
         secure: false,
       },
     },
