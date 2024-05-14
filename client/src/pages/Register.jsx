@@ -46,16 +46,13 @@ const Register = () => {
       setLoading(true); // set loading state to true before fetch is over
       setErrMsg(null); // set errMsg to null to clean up previous error
 
-      const res = await fetch(
-        "https://mern-blog-hdz7.onrender.com/api/auth/register",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(formData),
-        }
-      );
+      const res = await fetch("/api/api/auth/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
 
       const data = await res.json();
 
