@@ -46,7 +46,7 @@ const Register = () => {
       setLoading(true); // set loading state to true before fetch is over
       setErrMsg(null); // set errMsg to null to clean up previous error
 
-      const res = await fetch("/server/api/auth/register", {
+      const res = await fetch("/api/auth/register", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
