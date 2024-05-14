@@ -34,7 +34,7 @@ const OAuth = ({ onClick }) => {
 
       // `res` variable 儲存向後端發出的 POST
       const res = await fetch(
-        `${import.meta.VITE_BACKEND_BASEURL}/api/auth/google`,
+        `https://mern-blog-hdz7.onrender.com/api/auth/google`,
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },

@@ -11,7 +11,7 @@ const ProfileDropdown = ({ username, email }) => {
     try {
       // 發出 Req -> 儲存來自後端的 Res
       const res = await fetch(
-        `${import.meta.VITE_BACKEND_BASEURL}/api/user/logout`,
+        `https://mern-blog-hdz7.onrender.com/api/user/logout`,
         {
           method: "POST",
           // 不需傳送任何表頭/內文

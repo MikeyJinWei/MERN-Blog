@@ -47,7 +47,7 @@ const Register = () => {
       setErrMsg(null); // set errMsg to null to clean up previous error
 
       const res = await fetch(
-        `${import.meta.VITE_BACKEND_BASEURL}/api/auth/register`,
+        `https://mern-blog-hdz7.onrender.com/api/auth/register`,
         {
           method: "POST",
           headers: {

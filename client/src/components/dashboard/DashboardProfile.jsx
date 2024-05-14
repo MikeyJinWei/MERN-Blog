@@ -169,9 +169,7 @@ const DashboardProfile = () => {
       dispatch(updateStart()); // 開始更新
       // 發出 JSON 請求 -> `res` variable 儲存自後端的 respond
       const res = await fetch(
-        `${import.meta.VITE_BACKEND_BASEURL}/api/user/update/${
-          currentUser._id
-        }`,
+        `https://mern-blog-hdz7.onrender.com/api/user/update/${currentUser._id}`,
         {
           method: "PUT",
           headers: {
