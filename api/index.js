@@ -17,12 +17,14 @@ const __dirname = path.resolve(); // 取得動態路徑
 const port = process.env.PORT;
 const app = express();
 
+app.use(cors());
 app.use(express.json());
 app.use(
   express.urlencoded({
     extended: true,
   })
 );
+
 app.use(cookieParser());
 
 app.listen(port, () => {
